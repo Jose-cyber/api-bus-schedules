@@ -37,9 +37,22 @@ app.get('/api/v1/rotas', function(req, res){
 });
 
 // Criando uma nova rota
-app.post('/api/v1/rotas/create', function(req, res){
+app.post('/api/v1/rotas/create', function(req, res){  
+    // check api_key in header request
     if(req.headers.api_key == process.env.API_KEY){
-      console.log(req.body.route);
+      // check if body with parameter exists 
+      if(req.body.rota === "" || req.body.rota === undefined){
+        res.status(400).json({"Missing":"Parameter"})
+      }
+      else{
+          pool.query("CREATE TABLE IF NOT EXISTS "+req.body.rota+" (user_id serial PRIMARY KEY,saida VARCHAR ( 50 ) UNIQUE NOT NULL,chegada VARCHAR ( 50 ) UNIQUE NOT NULL,semanal BOOLEAN NOT NULL,sabado BOOLEAN NOT NULL,domingo BOOLEAN NOT NULL);", (error, results) =>{
+          if(error){
+            console.log(error);
+          } else{
+            res.status(200).json("Nova rota criada com sucesso!")
+          }
+        })
+      }
     }
     else{
       res.status(400).json("Error!")
@@ -49,8 +62,21 @@ app.post('/api/v1/rotas/create', function(req, res){
 
 // Deletando uma nova rota existente
 app.post('/api/v1/rotas/delete', function(req, res){
+  // check api_key in header request
   if(req.headers.api_key == process.env.API_KEY){
-    console.log(req.body.route);
+    // check if body with parameter exists 
+    if(req.body.rota === "" || req.body.rota === undefined){
+      res.status(400).json({"Missing":"Parameter"})
+    }
+    else{
+        pool.query("DROP TABLE IF EXISTS "+req.body.rota, (error, results) =>{
+        if(error){
+          console.log(error);
+        } else{
+          res.status(200).json("Rota deletada com sucesso!")
+        }
+      })
+    }
   }
   else{
     res.status(400).json("Error!")
@@ -78,7 +104,6 @@ app.post('/api/v1/horarios/create', function(req, res){
    else{
       res.status(400).json({"Missing":"Parameters"});
    }
-   //console.log(JSON.stringify(req.headers.api_key))
 });
 
 // Criado horario de onibus
