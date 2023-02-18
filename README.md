@@ -41,3 +41,8 @@ docker run -dit -p80:3000 \
   -e API_KEY={value} \
   api-horario-honibus
 </pre>
+
+### Next steps
+
+* Ajustar a forma de validação de credenciais paras rotas de criação[POST]
+* Implementar o swagger 
