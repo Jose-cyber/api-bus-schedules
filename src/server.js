@@ -1,17 +1,6 @@
 const express = require("express");
 const bodyParser = require('body-parser');
-const Pool = require("pg").Pool
-const dotenv = require("dotenv")
-dotenv.config()
-
-
-const pool = new Pool({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT
-})
+const {pool} = require('./database/db_con');
 
 // Instanciando o express e informando que usarei o body-parser
 const app = express();
