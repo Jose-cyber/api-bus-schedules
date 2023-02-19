@@ -88,6 +88,7 @@ app.get('/api/v1/horarios/:rota', function(req, res){
 // Criado horario de onibus
 app.post('/api/v1/horarios/create', function(req, res){
    if(req.headers.api_key == process.env.API_KEY){
+      
       res.status(500).json('OK header');
    }
    else{
@@ -98,12 +99,17 @@ app.post('/api/v1/horarios/create', function(req, res){
 // Criado horario de onibus
 app.post('/api/v1/horarios/delete', function(req, res){
   if(req.headers.api_key == process.env.API_KEY){
-     res.status(500).json('OK header');
+        pool.query("delete from "+req.body.rota+" ml_sjc where user_id = "+req.body.user_id+";",  (error, results) => {
+        if (error) {
+          console.log(error);
+          res.status(400).json('Error')
+        }else{
+          res.status(400).json('Rota deletada com sucesso!')
+        }})
   }
   else{
      res.status(400).json({"Missing":"Parameters"});
   }
-  //console.log(JSON.stringify(req.headers.api_key))
 });
 
 // Actuator to test api connection with database
