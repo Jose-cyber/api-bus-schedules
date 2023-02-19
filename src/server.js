@@ -99,7 +99,7 @@ app.post('/api/v1/horarios/create', function(req, res){
 // Criado horario de onibus
 app.post('/api/v1/horarios/delete', function(req, res){
   if(req.headers.api_key == process.env.API_KEY){
-        pool.query("delete from "+req.body.rota+" ml_sjc where user_id = "+req.body.user_id+";",  (error, results) => {
+        pool.query("delete from "+req.body.rota+" ml_sjc where id = "+req.body.id+";",  (error, results) => {
         if (error) {
           console.log(error);
           res.status(400).json('Error')
