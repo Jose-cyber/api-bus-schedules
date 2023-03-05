@@ -44,8 +44,7 @@ docker run -dit -p80:3000 \
 
 ### Next steps
 
-* Validar se a forma como os horarios estão sendo armazenados no banco esta correto
-* Subir um dump da base de dados usada
-* Ajustar rota de criação de horarios
-* Ajustar a forma de validação de credenciais paras rotas de criação[POST]
-* Implementar o swagger 
+* Validar se a forma como os horarios estão sendo armazenados no banco esta correto.
+* Ajustar rota de criação de horarios.
+* Ajustar a forma de validação de credenciais paras rotas de criação[POST].
+
