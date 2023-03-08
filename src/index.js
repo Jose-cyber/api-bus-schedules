@@ -1,11 +1,10 @@
-const express = require("express");
-const bodyParser = require('body-parser');
+const app = require('./infra/server');
 const {pool} = require('./database/db_con');
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
+const bodyParser = require('body-parser');
 
-// Instanciando o express e informando que usarei o body-parser
-const app = express();
+// informando que usarei o body-parser
 app.use(bodyParser.json())
 
 // REST API
@@ -128,10 +127,4 @@ app.get('/api/v1/actuator/health', function(req, res){
   });
 });
 
-
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
-
-
-app.listen(process.env.PORT, function(){
-  console.log('Server Runing')
-})

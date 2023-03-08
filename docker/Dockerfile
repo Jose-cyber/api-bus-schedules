@@ -4,4 +4,4 @@ COPY --chown=node:node . /usr/src/app
 COPY src/*  .
 RUN npm install
 USER NODE
-CMD ["node", "server.js"]
+CMD ["node", "index.js"]
