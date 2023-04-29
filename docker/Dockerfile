@@ -1,7 +1,7 @@
-FROM node:alpine
+FROM node:latest
 WORKDIR /usr/src/app
-COPY --chown=node:node . /usr/src/app
-COPY src/*  .
+COPY src/* .
 RUN npm install
-USER NODE
-CMD ["node", "index.js"]
+COPY --chown=node:node . /usr/src/app
+#USER node
+CMD ["node", "/usr/src/app/src/index.js"]

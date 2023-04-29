@@ -5,10 +5,10 @@
     "title": "Horario de oninus",
     "description": ""
   },
-  "host": "localhost:8080",
+  "host": "api-horario-onibus.com.br",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
