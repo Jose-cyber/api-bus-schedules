@@ -1,9 +1,10 @@
 const express = require("express");
 const {pool} = require('./database/db_con');
 const swaggerUi = require('swagger-ui-express');
-const swaggerFile = require('./swagger_output.json');
+const swaggerFile = require('./doc/swagger_output.json');
 const bodyParser = require('body-parser');
-
+const dotenv = require("dotenv")
+dotenv.config()
 
 // Instanciando o express
 const app = express();
@@ -126,7 +127,7 @@ app.get('/api/v1/actuator/health', function(req, res){
     }
     else{
       res.status(200).json({"status":"UP"});
-      console.log('DB_connection: '+results._connected);
+      console.log("Actuator:"+JSON.stringify({"db_conn_check": results._connected}));
     }
   });
 });
