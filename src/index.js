@@ -9,6 +9,9 @@ dotenv.config()
 // Instanciando o express
 const app = express();
 
+// Security config
+app.disable("x-powered-by");
+
 // informando que usarei o body-parser
 app.use(bodyParser.json())
 
@@ -142,5 +145,5 @@ app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // Instanciado o webserver
 app.listen(process.env.PORT || 8080, function(){
-  console.log('Server Runing')
+  console.log('Server Runing!')
 });

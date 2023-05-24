@@ -10,11 +10,7 @@ services:
     volumes:
     - ./nginx_proxy/nginx.conf:/etc/nginx/nginx.conf
     - ./nginx_proxy/ssl/:/ssl/
-    links:
-    - api-horario-onibus
-    - db_lobato-conecta
-    depends_on:
-    - api-horario-onibus
+
 
   api-horario-onibus:
     build:
@@ -24,14 +20,5 @@ services:
     env_file:
     - ./docker/.env
     restart: always
-    links:
-    - db_lobato-conecta
     depends_on:
-    - db_lobato-conecta
-  
-  db_lobato-conecta:
-    build:
-      context: database
-      dockerfile: ./Dockerfile
-    container_name: db_lobato-conecta
-    restart: always
+    - nginx_proxy
