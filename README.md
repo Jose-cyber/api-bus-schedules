@@ -8,7 +8,6 @@
    <img src="https://sonarcloud.io/api/project_badges/measure?project=Jose-cyber_api-nodejs-horario-onibus&metric=reliability_rating" alt="reliability_rating"/>
 </p>
 
-[ EM DESENVOLVIMENTO ]
 
 Esse é um simples projeto na consiste uma api rest construida em NodeJs para gerenciar horarios de onibus, essa api depende de um banco PostgreSQL para armazenamento dos dados dinamicamente.
 
