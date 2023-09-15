@@ -1,8 +1,0 @@
-{
-    "rota": "ml_sjc",
-    "saida": "00:00",
-    "chegada": "00:30",
-    "semanal": true,
-    "sabado": false,
-    "domingo": false
-}

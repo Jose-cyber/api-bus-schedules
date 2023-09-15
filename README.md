@@ -34,19 +34,8 @@ node server.js
 
 Build:
 <pre>
-docker build -t api-horario-honibus -f docker/Dockerfile .
+  docker build -t api-horario-honibus -f docker/Dockerfile .
 </pre>
 
-Run:
-<pre>
-docker run -dit -p80:3000 \
-  -e PGUSER={value} \
-  -e PGHOST={value} \
-  -e PGPASSWORD={value} \
-  -e PGDATABASE={value} \
-  -e PGPORT={value} \
-  -e API_KEY={value} \
-  api-horario-honibus
-</pre>
 
 
