@@ -1,4 +1,4 @@
-const yup = require('./userSchema');
+const yup = require('../userSchema');
 
 const deleteItinerariesSchema = yup
     .object({

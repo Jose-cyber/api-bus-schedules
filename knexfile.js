@@ -9,12 +9,10 @@ module.exports = {
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      charset: 'utf8',
-      ssl: true
     },
     pool: {
-      min: 2,
-      max: 10
+      min: 10,
+      max: 20
     },
     migrations: {
       tableName: 'knex_migrations',
@@ -23,7 +21,7 @@ module.exports = {
     seeds: {
       directory: 'src/seeds',
   },
-  debug: true,
+  debug: process.env.DB_DEBUG,
   },
 
   production: {
@@ -34,6 +32,8 @@ module.exports = {
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
+      charset: 'utf8',
+      ssl: process.env.DB_SSL,
     },
     pool: {
       min: 2,
@@ -46,7 +46,7 @@ module.exports = {
     seeds: {
       directory: 'src/seeds',
   },
-  debug: false,
+  debug: process.env.DB_DEBUG
   }
 
 };

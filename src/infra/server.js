@@ -1,7 +1,11 @@
 const express = require('express');
+
+// Routes
 const indexRoutes = require('../routes/indexRoutes.js')
 const actautorRoutes = require('../routes/actuatorRoutes.js')
 const itinerariesRoutes = require('../routes/itinerariesRoutes.js')
+const schedulerRoutes = require('../routes/schedulesRoutes.js')
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('../doc/swagger_output.json');
 const bodyParser = require('body-parser');
@@ -16,7 +20,8 @@ app.use(bodyParser.json());
 // calling my routes
 app.use(indexRoutes);
 app.use(actautorRoutes);
-app.use(itinerariesRoutes)
+app.use(itinerariesRoutes);
+app.use(schedulerRoutes);
 
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 

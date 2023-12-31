@@ -1,5 +1,5 @@
-const knex = require('../database/config.js');
-const logger = require('../configs/logger.js');
+const knex = require('../../database/config.js');
+const logger = require('../../configs/logger.js');
 
 class Health {
     actuator(req, res){
