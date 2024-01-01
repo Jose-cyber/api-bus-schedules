@@ -1,6 +1,8 @@
-FROM node:latest
-WORKDIR /usr/src/app
-COPY src/ .
+FROM node:slim
+WORKDIR /usr/app
+COPY package*.json ./
+COPY knexfile.js ./
+COPY src/ ./src/
 RUN npm install --ignore-scripts
 USER node
-CMD ["npm", "run", "dev"]
+CMD [ "npm", "run", "prd" ]

@@ -11,8 +11,8 @@ module.exports = {
       database: process.env.DB_DATABASE,
     },
     pool: {
-      min: 10,
-      max: 20
+      min: 2,
+      max: 8
     },
     migrations: {
       tableName: 'knex_migrations',
@@ -36,8 +36,8 @@ module.exports = {
       ssl: process.env.DB_SSL,
     },
     pool: {
-      min: 2,
-      max: 10
+      min: 10,
+      max: 20
     },
     migrations: {
       tableName: 'knex_migrations',

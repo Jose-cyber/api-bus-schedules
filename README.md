@@ -9,13 +9,12 @@
 </p>
 
 
-Esse é um simples projeto na consiste uma api rest construida em NodeJs para gerenciar horarios de onibus, essa api depende de um banco PostgreSQL para armazenamento dos dados dinamicamente.
+Esse é um simples projeto na qual consiste uma api REST construida em NodeJs para gerenciar horarios de onibus, essa api depende de um banco relacional para armazenamento dos dados e gerenciamento.
 
 
 ### Requirements:
  * NodeJS
- * PostgreSQL
- * Docker
+ * Relational Database(PostgreSQL, CockroachDB, MSSQL, MySQL, MariaDB, SQLite3, Better-SQLite3, Oracle, and Amazon Redshift)
 
 
 ### Run local:
@@ -27,15 +26,17 @@ npm install
 
 Run:
 <pre>
-node server.js
+npm run dev
 </pre>
 
 ### Run using docker: 
 
 Build:
 <pre>
-  docker build -t api-horario-honibus -f docker/Dockerfile .
+  docker build -t api-horario-honibus -f  Dockerfile .
 </pre>
+
+
 
 
 

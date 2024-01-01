@@ -3,6 +3,7 @@ const logger = require('../../configs/logger.js');
 const deleteScheduleSchema = require('../../schemas/schedules/deleteScheduleSchema.js')
 const patchScheduleSchema = require('../../schemas/schedules/patchScheduleSchema.js')
 const listQueryParamSchema = require('../../schemas/schedules/listQueryParamSchema.js')
+const createScheduleSchema = require('../../schemas/schedules/createScheduleSchema.js')
 
 class ControllerSchedules{
   list(req, res){
@@ -29,6 +30,14 @@ class ControllerSchedules{
       }        
   }
   create(req, res){
+    try{
+      createScheduleSchema.validateSync(req.body)
+      res.status(201).json({"New Route Created":"Sucess!"})
+    }
+    catch(error){
+      res.status(400).json({'Missing': 'Parameters!'})
+      logger.error(error.message)
+    }
    
   }
   edit(req, res){
