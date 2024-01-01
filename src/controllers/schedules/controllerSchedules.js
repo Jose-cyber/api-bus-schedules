@@ -32,7 +32,29 @@ class ControllerSchedules{
   create(req, res){
     try{
       createScheduleSchema.validateSync(req.body)
-      res.status(201).json({"New Route Created":"Sucess!"})
+    
+      knex
+        .insert([{
+          saida: req.body.saida,
+          chegada: req.body.chegada,
+          semanal: req.body.semanal,
+          sabado: req.body.sabado,
+          domingo: req.body.domingo, 
+          itinerario: req.body.itinerario
+        }])
+        .into('horarios')
+        .timeout()
+        .then(() =>{
+          res.status(201).json({"New Route Created":"Sucess!"})
+        })
+        .catch((error) =>{
+          res.status(500).json({"Create route": "failed!"})
+          logger.error(error.message)
+        })
+        .finally(() =>{
+          knex.destroy();
+        })
+      
     }
     catch(error){
       res.status(400).json({'Missing': 'Parameters!'})
@@ -57,15 +79,16 @@ class ControllerSchedules{
               res.status(200).json({ Status: 'Register '+ req.body.id +'Deleted Sucefully'})
             })
             .catch((error) => {
-              res.status(500).json({ Status: 'Failed'})
-              console.error('Error to update register: '+req.body.id, error);
+              res.status(500).json({ "Status": "Failed", "Error to update register": req.body.id})
+              logger.error(error.message);
             })
             .finally(() => {
               knex.destroy(); 
             });
     }
     catch(error) {
-          return res.status(400).json({ Missing: 'Parameters'});
+        logger.error(error.message)
+        res.status(400).json({ Missing: 'Parameters'});
     } 
   } 
   delete(req, res){
@@ -82,14 +105,15 @@ class ControllerSchedules{
             })
             .catch((error) =>{
                 res.status(500).json({ status: 'Failed'})
-                logger.error(error);
+                logger.error(error.message);
             })      
             .finally(() => {
               knex.destroy();
             });
     }
-    catch (err) {
-      return res.status(400).json({ Missing: 'Parameters'});
+    catch (error) {
+      logger.error(error.message)
+      res.status(400).json({ Missing: 'Parameters'});
   } 
  }
 

@@ -16,8 +16,9 @@ class ControllerItineraries {
             })
             .catch((error) => {
                 res.status(500).json('Error')
-                logger.error(error);
-            });
+                logger.error(error.message);
+            })
+
     }
     create(req, res){
         try {
@@ -46,7 +47,7 @@ class ControllerItineraries {
         }
         catch(error){
             res.status(400).json({ Missing: 'Parameters'});
-            logger.error(error);
+            logger.error(error.message);
         } 
     }
     delete(req, res){
