@@ -21,9 +21,7 @@ class ControllerSchedules{
               res.status(400).json({ Status: 'Error!'})
               logger.error(error.message)
           })
-          .finally(() => {
-            knex.destroy();
-          })
+
       } catch(error) {
           logger.error(error.message)
           res.status(400).json({ "error": "Missing or wrong Parameter" });
@@ -50,9 +48,6 @@ class ControllerSchedules{
         .catch((error) =>{
           res.status(500).json({"Create route": "failed!"})
           logger.error(error.message)
-        })
-        .finally(() =>{
-          knex.destroy();
         })
       
     }
@@ -82,9 +77,6 @@ class ControllerSchedules{
               res.status(500).json({ "Status": "Failed", "Error to update register": req.body.id})
               logger.error(error.message);
             })
-            .finally(() => {
-              knex.destroy(); 
-            });
     }
     catch(error) {
         logger.error(error.message)
@@ -107,9 +99,6 @@ class ControllerSchedules{
                 res.status(500).json({ status: 'Failed'})
                 logger.error(error.message);
             })      
-            .finally(() => {
-              knex.destroy();
-            });
     }
     catch (error) {
       logger.error(error.message)

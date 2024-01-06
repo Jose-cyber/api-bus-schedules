@@ -8,7 +8,7 @@ class Health {
         })
         .catch((error) => {
             res.status(500).json({status: "DOWN"})
-            logger.error(error);
+            logger.error(error.message);
         });
     }
 }

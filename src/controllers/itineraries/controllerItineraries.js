@@ -41,9 +41,6 @@ class ControllerItineraries {
                     res.status(500).json({status: 'Failed'})
                     logger.error(error)
                 })
-                .finally(() => {
-                    knex.destroy();
-                });
         }
         catch(error){
             res.status(400).json({ Missing: 'Parameters'});
@@ -69,9 +66,6 @@ class ControllerItineraries {
                 res.status(500).json({ status: 'Failed'})
                 logger.error(error);
             })
-            .finally(() => {
-                knex.destroy();
-            });
         }
         catch(err){
             return res.status(400).json({ Missing: 'Parameters'});
@@ -110,9 +104,6 @@ class ControllerItineraries {
                     logger.error('Erro ao atualizar o registro:', err);
                     res.status(400).json({"Operation": "Failed!","Action": "Update"})
                 })
-                .finally(() => {
-                    knex.destroy();
-                });
         }
         catch(error){
             console.log(error)
