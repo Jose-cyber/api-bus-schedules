@@ -8,14 +8,11 @@
    <img src="https://sonarcloud.io/api/project_badges/measure?project=Jose-cyber_api-nodejs-horario-onibus&metric=reliability_rating" alt="reliability_rating"/>
 </p>
 
-
-Esse é um simples projeto na qual consiste uma api REST construida em NodeJs para gerenciar horarios de onibus, essa api depende de um banco relacional para armazenamento dos dados e gerenciamento.
-
+This is a simple project that consists of a REST api built in NodeJs to manage bus schedules and itineraries. This api depends on a relational database for data storage and management.
 
 ### Requirements:
  * NodeJS
  * Relational Database(PostgreSQL, CockroachDB, MSSQL, MySQL, MariaDB, SQLite3, Better-SQLite3, Oracle, and Amazon Redshift)
-
 
 ### Run local:
 
@@ -33,9 +30,20 @@ npm run dev
 
 Build:
 <pre>
-  docker build -t api-horario-honibus -f  Dockerfile .
+docker build -t api-bus-schedules -f  Dockerfile .
 </pre>
 
+Run:
+<pre>
+docker run -d \
+  --env-file=.env \
+  -p5000:8000 \
+  api-bus-schedules
+</pre>
+
+Image on my own docker repository:
+
+<a href="https://hub.docker.com/repository/docker/josecyber/api-bus-schedules/general">api-bus-schedules</a>
 
 
 

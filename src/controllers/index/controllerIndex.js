@@ -1,6 +1,6 @@
 class Index {
     index(req, res){
-       res.status(500).json({service: "api-bus-schedules"})
+       res.status(200).json({service: "api-bus-schedules"})
     }
 }
 
