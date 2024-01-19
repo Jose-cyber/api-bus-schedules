@@ -12,10 +12,9 @@ class ControllerItineraries {
             .then((query_result) => {
                 res.status(200).json(query_result)
                 logger.info(query_result)
-                
             })
             .catch((error) => {
-                res.status(500).json('Error')
+                res.status(500).json({ status: 'Error'})
                 logger.error(error.message);
             })
 
