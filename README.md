@@ -1,4 +1,4 @@
-# api-nodejs-horario-onibus
+# api bus schedules
 
 <p float="left">
    <img src="https://sonarcloud.io/api/project_badges/measure?project=Jose-cyber_api-nodejs-horario-onibus&metric=vulnerabilities" alt="vulnerabilities"/>
@@ -8,11 +8,11 @@
    <img src="https://sonarcloud.io/api/project_badges/measure?project=Jose-cyber_api-nodejs-horario-onibus&metric=reliability_rating" alt="reliability_rating"/>
 </p>
 
-This is a simple project that consists of a REST api built in NodeJs to manage bus schedules and itineraries. This api depends on a relational database for data storage and management.
+This is a simple project that consists of a REST API built in Node.js to manage bus schedules and itineraries. This API depends on a relational database for data storage and management.
 
 ### Requirements:
- * NodeJS
- * Relational Database(PostgreSQL, CockroachDB, MSSQL, MySQL, MariaDB, SQLite3, Better-SQLite3, Oracle, and Amazon Redshift)
+ * Node.js
+ * Relational Database (PostgreSQL, CockroachDB, MSSQL, MySQL, MariaDB, SQLite3, Better-SQLite3, Oracle, and Amazon Redshift)
 
 ### Run local:
 
@@ -44,6 +44,8 @@ docker run -d \
 Image on my own docker repository:
 
 <a href="https://hub.docker.com/repository/docker/josecyber/api-bus-schedules/general">api-bus-schedules</a>
+
+<hr>
 
 
 

@@ -63,10 +63,11 @@ class ControllerItineraries {
             })
             .catch((error) =>{
                 res.status(500).json({ status: 'Failed'})
-                logger.error(error);
+                logger.error(error.message);
             })
         }
-        catch(err){
+        catch(error){
+            logger.error(error.message);
             return res.status(400).json({ Missing: 'Parameters'});
         }
 
@@ -99,13 +100,13 @@ class ControllerItineraries {
                     res.status(200).json(responseTemplate)
                     logger.info(responseTemplate);
                 })
-                .catch((err) => {
-                    logger.error('Erro ao atualizar o registro:', err);
+                .catch((error) => {
+                    logger.error('Erro ao atualizar o registro:', error.message);
                     res.status(400).json({"Operation": "Failed!","Action": "Update"})
                 })
         }
         catch(error){
-            console.log(error)
+            console.log(error.message)
             res.status(400).json({ "Missing": 'Parameters'});
         }
     }

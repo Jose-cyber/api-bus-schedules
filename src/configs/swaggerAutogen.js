@@ -19,27 +19,64 @@ const doc = {
       name: 'Itineraries',
       description: 'Endpoints',
     },
-    // ... other tags
+    {
+      name: 'Schedules',
+      description: 'Endpoints',
+    },
+    {
+      name: 'Actuator',
+      description: 'Endpoints',
+    },
+    {
+      name: 'Index',
+      description: 'Endpoints',
+    }
   ],
   definitions: {
-    itineraries: {
-      type: 'object', // Define the model type
-      properties: {
-        id: {
-          type: 'integer',
-          example: 1,
-        },
-        name: {
-          type: 'string',
-          example: 'ml_sjc',
-        },
-        alias: {
-          type: 'string',
-          example: 'Monteiro Lobato x São José dos Campos',
-        },
-      },
+    itinerariesCreate: {
+        name: "sjc_sp",
+        alias: "São José dos Campos X São Paulo"
     },
-    // ... other definitions
+    itinerariesDelete:{
+        id: 7,
+        name: "sjc_sp",
+        alias: "São José dos Campos X São Paulo"
+    },
+    itinerariesEdit:{
+        id: 8,
+        alias: "sjc_sp",
+        name: "São José dos Campos X São Paulo",
+        update: {
+          name: "sjc_mgc",
+          alias: "São José dos Campos X mogi das cruzes" 
+        }
+    },
+    schedulesCreate:{
+        itinerario: "sjc_spj",
+        saida: "00:00",
+        chegada: "00:30",
+        semanal: true,
+        sabado: false,
+        domingo: false
+    },
+    schedulesDelete:{
+      id: 45,
+      saida: "06:40:00",
+      chegada: "07:40:00",
+      semanal: true,
+      sabado: false,
+      domingo: false,
+      itinerario: "ml_sjc"
+    },
+    schedulesEdit:{
+        id: 45,
+        saida: "06:40:00",
+        chegada: "07:40:00",
+        semanal: true,
+        sabado: false,
+        domingo: false,
+        itinerario: "ml_sjc"
+    }    
   },
 }
 

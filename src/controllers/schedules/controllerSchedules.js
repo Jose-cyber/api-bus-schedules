@@ -71,7 +71,7 @@ class ControllerSchedules{
               itinerario: req.body.itinerario,
             })
             .then(() => {
-              res.status(200).json({ Status: 'Register '+ req.body.id +'Deleted Sucefully'})
+              res.status(200).json({ Status: 'Register '+ req.body.id +' updated sucefully'})
             })
             .catch((error) => {
               res.status(500).json({ "Status": "Failed", "Error to update register": req.body.id})
