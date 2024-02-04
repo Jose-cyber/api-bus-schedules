@@ -11,6 +11,18 @@
     {
       "name": "Itineraries",
       "description": "Endpoints"
+    },
+    {
+      "name": "Schedules",
+      "description": "Endpoints"
+    },
+    {
+      "name": "Actuator",
+      "description": "Endpoints"
+    },
+    {
+      "name": "Index",
+      "description": "Endpoints"
     }
   ],
   "schemes": [
@@ -102,7 +114,27 @@
           "200": {
             "description": "Register data, and sent email",
             "schema": {
-              "$ref": "#/definitions/Itineraries.list"
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 2
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "ml_sbt"
+                  },
+                  "alias": {
+                    "type": "string",
+                    "example": "Monteiro Lobato x São Benedito"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
             }
           },
           "500": {
@@ -129,12 +161,61 @@
           "Itineraries"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "send",
+            "in": "body",
+            "description": "Register and send information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/itinerariesCreate"
+            }
+          }
+        ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Register data, and sent email",
             "schema": {
-              "$ref": "#/definitions/Itineraries/create"
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "Success!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, schema or parameters is invalid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Missing": {
+                  "type": "string",
+                  "example": "Parameters"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect to database",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "Failed"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
             }
           }
         }
@@ -146,8 +227,68 @@
           "Itineraries"
         ],
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "send",
+            "in": "body",
+            "description": "Delete register.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/itinerariesDelete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Register in database was deleted success!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "Success!"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Register {'id': 7'name': sjc_sp'alias': São José dos Campos X São Paulo} deleted successfully."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, schema or parameters is invalid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Missing": {
+                  "type": "string",
+                  "example": "Parameters"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect to database!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "Failed"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
       }
     },
     "/api/v1/itineraries/edit": {
@@ -156,8 +297,98 @@
           "Itineraries"
         ],
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "send",
+            "in": "body",
+            "description": "Update register.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/itinerariesEdit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated register in database",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Operation": {
+                  "type": "string",
+                  "example": "Sucess!"
+                },
+                "Action": {
+                  "type": "string",
+                  "example": "Update"
+                },
+                "Register": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "sjc_sp"
+                    },
+                    "alias": {
+                      "type": "string",
+                      "example": "São José dos Campos X São Paulo"
+                    }
+                  }
+                },
+                "New Register": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "sjc_sp"
+                    },
+                    "alias": {
+                      "type": "string",
+                      "example": "São José dos Campos X São Paulo Capital"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Request or schema is not valid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Missing": {
+                  "type": "string",
+                  "example": "Parameters"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect to database!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Operation": {
+                  "type": "string",
+                  "example": "Failed!"
+                },
+                "Action": {
+                  "type": "string",
+                  "example": "Update"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
       }
     },
     "/api/v1/schedules/list": {
@@ -166,8 +397,115 @@
           "Schedules"
         ],
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "itinerario",
+            "in": "query",
+            "description": "Filter by itinerarie.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "semanal",
+            "in": "query",
+            "type": "boolean",
+            "description": "Filter by semanal values.",
+            "required": false
+          },
+          {
+            "name": "sabado",
+            "in": "query",
+            "type": "boolean",
+            "description": "Filter by sabado values.",
+            "required": false
+          },
+          {
+            "name": "domingo",
+            "in": "query",
+            "type": "boolean",
+            "description": "Filter by domingo values.",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listed all register",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "horarios": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number",
+                        "example": 2
+                      },
+                      "saida": {
+                        "type": "string",
+                        "example": "06:40:00"
+                      },
+                      "chegada": {
+                        "type": "string",
+                        "example": "07:40:00"
+                      },
+                      "semanal": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "sabado": {
+                        "type": "boolean",
+                        "example": false
+                      },
+                      "domingo": {
+                        "type": "boolean",
+                        "example": false
+                      },
+                      "itinerario": {
+                        "type": "string",
+                        "example": "ml_sjc"
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, schema or missing parameter",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Missing or wrong Parameter"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect to database",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Status": {
+                  "type": "string",
+                  "example": "Error!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
       }
     },
     "/api/v1/schedules/create": {
@@ -176,8 +514,64 @@
           "Schedules"
         ],
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "send",
+            "in": "body",
+            "description": "Register new schedule",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulesCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Data was registered in database",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "New Route Created": {
+                  "type": "string",
+                  "example": "Sucess!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, schema or parameter is invalid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Missing": {
+                  "type": "string",
+                  "example": "Parameters!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect to database",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Create route": {
+                  "type": "string",
+                  "example": "failed!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
       }
     },
     "/api/v1/schedules/edit": {
@@ -186,8 +580,68 @@
           "Schedules"
         ],
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "send",
+            "in": "body",
+            "description": "Edit an existent schedule",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulesEdit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Register was updated in database",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Status": {
+                  "type": "string",
+                  "example": "Register 12 updated sucefully"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, schema or parameter is invalid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Missing": {
+                  "type": "string",
+                  "example": "Parameters!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to connect to database",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Status": {
+                  "type": "string",
+                  "example": "Failed"
+                },
+                "Error to update register": {
+                  "type": "number",
+                  "example": 12
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
       }
     },
     "/api/v1/schedules/delete": {
@@ -196,66 +650,220 @@
           "Schedules"
         ],
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "send",
+            "in": "body",
+            "description": "Delete an existent schedule",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulesDelete"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Register was delete in database",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Status": {
+                  "type": "string",
+                  "example": "Register 12 Deleted Sucefully"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, schema or parameter is invalid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Missing": {
+                  "type": "string",
+                  "example": "Parameters!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to delete register to database",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "Failed"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
       }
     }
   },
   "definitions": {
-    "itineraries": {
+    "itinerariesCreate": {
       "type": "object",
       "properties": {
-        "type": {
+        "name": {
           "type": "string",
-          "example": "object"
+          "example": "sjc_sp"
         },
-        "properties": {
+        "alias": {
+          "type": "string",
+          "example": "São José dos Campos X São Paulo"
+        }
+      }
+    },
+    "itinerariesDelete": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 7
+        },
+        "name": {
+          "type": "string",
+          "example": "sjc_sp"
+        },
+        "alias": {
+          "type": "string",
+          "example": "São José dos Campos X São Paulo"
+        }
+      }
+    },
+    "itinerariesEdit": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 8
+        },
+        "alias": {
+          "type": "string",
+          "example": "sjc_sp"
+        },
+        "name": {
+          "type": "string",
+          "example": "São José dos Campos X São Paulo"
+        },
+        "update": {
           "type": "object",
           "properties": {
-            "id": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "integer"
-                },
-                "example": {
-                  "type": "number",
-                  "example": 1
-                }
-              }
-            },
             "name": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "ml_sjc"
-                }
-              }
+              "type": "string",
+              "example": "sjc_mgc"
             },
             "alias": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "Monteiro Lobato x São José dos Campos"
-                }
-              }
+              "type": "string",
+              "example": "São José dos Campos X mogi das cruzes"
             }
           }
+        }
+      }
+    },
+    "schedulesCreate": {
+      "type": "object",
+      "properties": {
+        "itinerario": {
+          "type": "string",
+          "example": "sjc_spj"
         },
-        "schemas": {
-          "type": "object",
-          "properties": {}
+        "saida": {
+          "type": "string",
+          "example": "00:00"
+        },
+        "chegada": {
+          "type": "string",
+          "example": "00:30"
+        },
+        "semanal": {
+          "type": "boolean",
+          "example": true
+        },
+        "sabado": {
+          "type": "boolean",
+          "example": false
+        },
+        "domingo": {
+          "type": "boolean",
+          "example": false
+        }
+      }
+    },
+    "schedulesDelete": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 45
+        },
+        "saida": {
+          "type": "string",
+          "example": "06:40:00"
+        },
+        "chegada": {
+          "type": "string",
+          "example": "07:40:00"
+        },
+        "semanal": {
+          "type": "boolean",
+          "example": true
+        },
+        "sabado": {
+          "type": "boolean",
+          "example": false
+        },
+        "domingo": {
+          "type": "boolean",
+          "example": false
+        },
+        "itinerario": {
+          "type": "string",
+          "example": "ml_sjc"
+        }
+      }
+    },
+    "schedulesEdit": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 45
+        },
+        "saida": {
+          "type": "string",
+          "example": "06:40:00"
+        },
+        "chegada": {
+          "type": "string",
+          "example": "07:40:00"
+        },
+        "semanal": {
+          "type": "boolean",
+          "example": true
+        },
+        "sabado": {
+          "type": "boolean",
+          "example": false
+        },
+        "domingo": {
+          "type": "boolean",
+          "example": false
+        },
+        "itinerario": {
+          "type": "string",
+          "example": "ml_sjc"
         }
       }
     }

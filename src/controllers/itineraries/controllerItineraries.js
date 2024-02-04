@@ -8,9 +8,9 @@ class ControllerItineraries {
     list(req, res){
         knex
             .select()
-            .from('itinerarios')
+            .from('itineraries')
             .then((query_result) => {
-                res.status(200).json(query_result)
+                res.status(200).json({"itineraries": query_result})
                 logger.info(query_result)
             })
             .catch((error) => {
@@ -30,7 +30,7 @@ class ControllerItineraries {
                         alias: req.body.alias
                     }
                 ])
-                .into('itinerarios')
+                .into('itineraries')
                 .timeout(1000)
                 .then((query_result)=>{
                     res.status(201).json({ status: 'Success!'})
@@ -49,7 +49,7 @@ class ControllerItineraries {
     delete(req, res){
         try{
             deleteItinerariesSchema.validateSync(req.body, { abortEarly: false });
-            knex('itinerarios')
+            knex('itineraries')
               .del()
               .where({
                 id: req.body.id,
@@ -63,10 +63,11 @@ class ControllerItineraries {
             })
             .catch((error) =>{
                 res.status(500).json({ status: 'Failed'})
-                logger.error(error);
+                logger.error(error.message);
             })
         }
-        catch(err){
+        catch(error){
+            logger.error(error.message);
             return res.status(400).json({ Missing: 'Parameters'});
         }
 
@@ -74,7 +75,7 @@ class ControllerItineraries {
     edit(req, res){
         try{
             editItinerariesSchema.validateSync(req.body);
-            knex('itinerarios')
+            knex('itineraries')
                 .where({
                     id: req.body.id
                 })
@@ -85,7 +86,7 @@ class ControllerItineraries {
                 .timeout(1000)
                 .then(() => {
                     const responseTemplate = {
-                        "Operation": "Sucess!",
+                        "Status": "Sucess",
                         "Action": "Update",
                         "Register": {
                             "name": req.body.name,
@@ -99,13 +100,13 @@ class ControllerItineraries {
                     res.status(200).json(responseTemplate)
                     logger.info(responseTemplate);
                 })
-                .catch((err) => {
-                    logger.error('Erro ao atualizar o registro:', err);
+                .catch((error) => {
+                    logger.error('Erro ao atualizar o registro:', error.message);
                     res.status(400).json({"Operation": "Failed!","Action": "Update"})
                 })
         }
         catch(error){
-            console.log(error)
+            console.log(error.message)
             res.status(400).json({ "Missing": 'Parameters'});
         }
     }

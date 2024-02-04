@@ -1,19 +1,22 @@
 const express = require('express');
+const cors = require('cors');
+const app = express();
 
 // Routes
-const indexRoutes = require('../routes/index/indexRoutes.js')
-const actautorRoutes = require('../routes/actuator/actuatorRoutes.js')
-const itinerariesRoutes = require('../routes/itineraries/itinerariesRoutes.js')
-const schedulerRoutes = require('../routes/schedules/schedulesRoutes.js')
+const indexRoutes = require('../routes/index/indexRoutes.js');
+const actautorRoutes = require('../routes/actuator/actuatorRoutes.js');
+const itinerariesRoutes = require('../routes/itineraries/itinerariesRoutes.js');
+const schedulerRoutes = require('../routes/schedules/schedulesRoutes.js');
 
 // configs
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('../docs/swagger.json');
 const bodyParser = require('body-parser');
-const app = express();
+const corsOptions = require('../middleware/corsConfig.js');
 
 // Security config
 app.disable("x-powered-by");
+app.use(cors(corsOptions));
 
 // Using body-parser
 app.use(bodyParser.json());
@@ -23,7 +26,7 @@ app.use(indexRoutes);
 app.use(actautorRoutes);
 app.use(itinerariesRoutes);
 app.use(schedulerRoutes);
-app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
 module.exports = app;

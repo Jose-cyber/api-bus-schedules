@@ -12,9 +12,9 @@ class ControllerSchedules{
           knex
             .select()
             .where(reqParamValidator)
-            .from('horarios')
+            .from('schedules')
             .then((queryResult) => {
-                res.status(200).json({"horarios": queryResult})
+                res.status(200).json({"schedules": queryResult})
                 logger.info(queryResult)
           })
           .catch((error) => {
@@ -33,14 +33,16 @@ class ControllerSchedules{
     
       knex
         .insert([{
-          saida: req.body.saida,
-          chegada: req.body.chegada,
-          semanal: req.body.semanal,
-          sabado: req.body.sabado,
-          domingo: req.body.domingo, 
-          itinerario: req.body.itinerario
+          start: req.body.start,
+          end: req.body.end,
+          weekly: req.body.weekly,
+          saturday: req.body.saturday,
+          sunday: req.body.sunday, 
+          come_from_sfx: req.body.come_from_sfx,
+          itineraries_name: req.body.itineraries_name,
+          itineraries_alias: req.body.itineraries_alias
         }])
-        .into('horarios')
+        .into('schedules')
         .timeout()
         .then(() =>{
           res.status(201).json({"New Route Created":"Sucess!"})
@@ -60,18 +62,20 @@ class ControllerSchedules{
   edit(req, res){
     try {
       patchScheduleSchema.validateSync(req.body,  { abortEarly: false });
-          knex('horarios')
+          knex('schedules')
             .where('id', req.body.id)
             .update({
-              saida: req.body.saida,
-              chegada: req.body.chegada,
-              semanal: req.body.semanal,
-              sabado: req.body.sabado,
-              domingo: req.body.domingo,
-              itinerario: req.body.itinerario,
+              start: req.body.start,
+              end: req.body.end,
+              weekly: req.body.weekly,
+              come_from_sfx: req.body.come_from_sfx,
+              saturday: req.body.saturday,
+              sunday: req.body.sunday,
+              itineraries_name: req.body.itineraries_name,
+              itineraries_alias: req.body.itineraries_alias,
             })
             .then(() => {
-              res.status(200).json({ Status: 'Register '+ req.body.id +'Deleted Sucefully'})
+              res.status(200).json({ Status: 'Register '+ req.body.id +' updated sucefully'})
             })
             .catch((error) => {
               res.status(500).json({ "Status": "Failed", "Error to update register": req.body.id})
@@ -87,7 +91,7 @@ class ControllerSchedules{
     try {
       deleteScheduleSchema.validateSync(req.body,  { abortEarly: false });
       const scheduleId = req.body.id;
-            knex('horarios')
+            knex('schedules')
               .del()
               .where('id', scheduleId)
               .timeout(1000)
