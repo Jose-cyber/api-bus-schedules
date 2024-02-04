@@ -4,10 +4,10 @@
  */
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
-  await knex('horarios').del()
-  await knex('itinerarios').del()
+  await knex('schedules').del()
+  await knex('itineraries').del()
 
-  await knex('itinerarios').insert([
+  await knex('itineraries').insert([
     { name: 'ml_sjc', alias: "Monteiro Lobato x São José dos Campos"},
     { name: 'ml_sbt', alias: "Monteiro Lobato x São Benedito"},
     { name: 'sbt_ml', alias: "São Benedito X Monteiro Lobato"},
@@ -15,54 +15,54 @@ exports.seed = async function(knex) {
     { name: 'sjc_sfx', alias: "São José dos Campos x São francisco Xavier"},
     { name: 'sfx_sjc', alias: "São francisco Xavier x São José dos Campos"},
   ]);
-  await knex('horarios').insert([
-    { saida: '05:30', chegada: '06:30', semanal: true, sabado: false, domingo: false, itinerario: "ml_sjc" },
-    { saida: '06:40', chegada: '07:40', semanal: true, sabado: false, domingo: false, itinerario: "ml_sjc" },
-    { saida: '06:30', chegada: '07:30', semanal: true, sabado: false, domingo: false, itinerario: "ml_sjc" },
-    { saida: '08:10', chegada: '09:10', semanal: true, sabado: false, domingo: false, itinerario: "ml_sjc" },
-    { saida: '10:40', chegada: '11:40', semanal: true, sabado: false, domingo: false, itinerario: "ml_sjc" },
-    { saida: '12:40', chegada: '13:40', semanal: true, sabado: false, domingo: false, itinerario: "ml_sjc" },
-    { saida: '16:00', chegada: '17:00', semanal: true, sabado: false, domingo: false, itinerario: "ml_sjc" },
-    { saida: '17:40', chegada: '18:40', semanal: true, sabado: false, domingo: false, itinerario: "ml_sjc" },
-    { saida: '19:40', chegada: '20:40', semanal: true, sabado: false, domingo: false, itinerario: "ml_sjc" },
-    { saida: '06:40', chegada: '07:40', semanal: false, sabado: true, domingo: false, itinerario: "ml_sjc" },
-    { saida: '14:40', chegada: '15:40', semanal: false, sabado: true, domingo: false, itinerario: "ml_sjc" },
-    { saida: '09:40', chegada: '10:40', semanal: false, sabado: false, domingo: true, itinerario: "ml_sjc" },
-    { saida: '17:40', chegada: '18:40', semanal: false, sabado: false, domingo: true, itinerario: "ml_sjc" }, 
-    { saida: '05:10', chegada: '06:10', semanal: true, sabado: false, domingo: false, itinerario: "ml_sbt"},
-    { saida: '06:40', chegada: '07:40', semanal: true, sabado: false, domingo: false, itinerario: "ml_sbt"},
-    { saida: '13:00', chegada: '14:00', semanal: true, sabado: false, domingo: false, itinerario: "ml_sbt"},
-    { saida: '17:15', chegada: '18:15', semanal: true, sabado: false, domingo: false, itinerario: "ml_sbt"},
+  await knex('schedules').insert([
+    { start: '05:30', end: '06:30', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '06:40', end: '07:40', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '06:30', end: '07:30', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '08:10', end: '09:10', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '10:40', end: '11:40', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '12:40', end: '13:40', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '16:00', end: '17:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '17:40', end: '18:40', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '19:40', end: '20:40', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '06:40', end: '07:40', weekly: false, saturday: true, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '14:40', end: '15:40', weekly: false, saturday: true, sunday: false, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '09:40', end: '10:40', weekly: false, saturday: false, sunday: true, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '17:40', end: '18:40', weekly: false, saturday: false, sunday: true, come_from_sfx: false, itineraries_name: "ml_sjc", itineraries_alias: "Monteiro Lobato x São José dos Campos" }, 
+    { start: '05:10', end: '06:10', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sbt", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '06:40', end: '07:40', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sbt", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '13:00', end: '14:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sbt", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
+    { start: '17:15', end: '18:15', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "ml_sbt", itineraries_alias: "Monteiro Lobato x São José dos Campos" },
 
-    { saida: '05:35', chegada: '06:35', semanal: true, sabado: false, domingo: false, itinerario: "sbt_ml"},
-    { saida: '07:05', chegada: '08:05', semanal: true, sabado: false, domingo: false, itinerario: "sbt_ml"},
-    { saida: '13:35', chegada: '14:35', semanal: true, sabado: false, domingo: false, itinerario: "sbt_ml"},
-    { saida: '17:50', chegada: '18:50', semanal: true, sabado: false, domingo: false, itinerario: "sbt_ml"},
+    { start: '05:35', end: '06:35', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sbt_ml", itineraries_alias: "São Benedito X Monteiro Lobato" },
+    { start: '07:05', end: '08:05', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sbt_ml", itineraries_alias: "São Benedito X Monteiro Lobato" },
+    { start: '13:35', end: '14:35', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sbt_ml", itineraries_alias: "São Benedito X Monteiro Lobato" },
+    { start: '17:50', end: '18:50', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sbt_ml", itineraries_alias: "São Benedito X Monteiro Lobato" },
 
-    { saida: '06:00', chegada: '07:00', semanal: true, sabado: false, domingo: false, itinerario: "sfx_sjc" },
-    { saida: '10:00', chegada: '11:00', semanal: true, sabado: false, domingo: false, itinerario: "sfx_sjc" },
-    { saida: '12:00', chegada: '13:00', semanal: true, sabado: false, domingo: false, itinerario: "sfx_sjc" },
-    { saida: '17:00', chegada: '18:00', semanal: true, sabado: false, domingo: false, itinerario: "sfx_sjc" },
-    { saida: '19:00', chegada: '20:00', semanal: true, sabado: false, domingo: false, itinerario: "sfx_sjc" },
-    { saida: '06:00', chegada: '07:00', semanal: false, sabado: true, domingo: false, itinerario: "sfx_sjc" },
-    { saida: '14:00', chegada: '15:00', semanal: false, sabado: true, domingo: false, itinerario: "sfx_sjc" },
-    { saida: '09:00', chegada: '10:00', semanal: false, sabado: false, domingo: true, itinerario: "sfx_sjc" },
-    { saida: '17:00', chegada: '18:00', semanal: false, sabado: false, domingo: true, itinerario: "sfx_sjc" },
+    { start: '06:00', end: '07:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sfx_sjc", itineraries_alias: "São francisco Xavier x São José dos Campos" },
+    { start: '10:00', end: '11:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sfx_sjc", itineraries_alias: "São francisco Xavier x São José dos Campos" },
+    { start: '12:00', end: '13:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sfx_sjc", itineraries_alias: "São francisco Xavier x São José dos Campos" },
+    { start: '17:00', end: '18:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sfx_sjc", itineraries_alias: "São francisco Xavier x São José dos Campos" },
+    { start: '19:00', end: '20:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sfx_sjc", itineraries_alias: "São francisco Xavier x São José dos Campos" },
+    { start: '06:00', end: '07:00', weekly: false, saturday: true, sunday: false, come_from_sfx: false, itineraries_name: "sfx_sjc", itineraries_alias: "São francisco Xavier x São José dos Campos" },
+    { start: '14:00', end: '15:00', weekly: false, saturday: true, sunday: false, come_from_sfx: false, itineraries_name: "sfx_sjc", itineraries_alias: "São francisco Xavier x São José dos Campos" },
+    { start: '09:00', end: '10:00', weekly: false, saturday: false, sunday: true, come_from_sfx: false, itineraries_name: "sfx_sjc", itineraries_alias: "São francisco Xavier x São José dos Campos" },
+    { start: '17:00', end: '18:00', weekly: false, saturday: false, sunday: true, come_from_sfx: false, itineraries_name: "sfx_sjc", itineraries_alias: "São francisco Xavier x São José dos Campos" },
 
-    { saida: '07:00', chegada: '08:00', semanal: true, sabado: false, domingo: false, itinerario: "sjc_ml" },
-    { saida: '14:00', chegada: '15:00', semanal: true, sabado: false, domingo: false, itinerario: "sjc_ml" },
-    { saida: '16:00', chegada: '17:00', semanal: true, sabado: false, domingo: false, itinerario: "sjc_ml" },
-    { saida: '18:30', chegada: '19:30', semanal: true, sabado: false, domingo: false, itinerario: "sjc_ml" },
-    { saida: '20:40', chegada: '21:40', semanal: true, sabado: false, domingo: false, itinerario: "sjc_ml" },
+    { start: '07:00', end: '08:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sjc_ml", itineraries_alias: "São José dos Campos x Monteiro Lobato" },
+    { start: '14:00', end: '15:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sjc_ml", itineraries_alias: "São José dos Campos x Monteiro Lobato" },
+    { start: '16:00', end: '17:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sjc_ml", itineraries_alias: "São José dos Campos x Monteiro Lobato" },
+    { start: '18:30', end: '19:30', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sjc_ml", itineraries_alias: "São José dos Campos x Monteiro Lobato" },
+    { start: '20:40', end: '21:40', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sjc_ml", itineraries_alias: "São José dos Campos x Monteiro Lobato" },
 
-    { saida: '05:40', chegada: '06:40', semanal: true, sabado: false, domingo: false, itinerario: "sjc_sfx" },
-    { saida: '10:00', chegada: '11:00', semanal: true, sabado: false, domingo: false, itinerario: "sjc_sfx" },
-    { saida: '12:00', chegada: '13:00', semanal: true, sabado: false, domingo: false, itinerario: "sjc_sfx" },
-    { saida: '17:10', chegada: '18:10', semanal: true, sabado: false, domingo: false, itinerario: "sjc_sfx" },
-    { saida: '07:40', chegada: '08:40', semanal: false, sabado: true, domingo: false, itinerario: "sjc_sfx" },
-    { saida: '17:00', chegada: '18:00', semanal: false, sabado: true, domingo: false, itinerario: "sjc_sfx" },
-    { saida: '07:00', chegada: '08:00', semanal: false, sabado: false, domingo: true, itinerario: "sjc_sfx" },
-    { saida: '14:00', chegada: '15:00', semanal: false, sabado: false, domingo: true, itinerario: "sjc_sfx" },
+    { start: '05:40', end: '06:40', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sjc_sfx", itineraries_alias: "São José dos Campos x São francisco Xavier" },
+    { start: '10:00', end: '11:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sjc_sfx", itineraries_alias: "São José dos Campos x São francisco Xavier" },
+    { start: '12:00', end: '13:00', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sjc_sfx", itineraries_alias: "São José dos Campos x São francisco Xavier" },
+    { start: '17:10', end: '18:10', weekly: true, saturday: false, sunday: false, come_from_sfx: false, itineraries_name: "sjc_sfx", itineraries_alias: "São José dos Campos x São francisco Xavier" },
+    { start: '07:40', end: '08:40', weekly: false, saturday: true, sunday: false, come_from_sfx: false, itineraries_name: "sjc_sfx", itineraries_alias: "São José dos Campos x São francisco Xavier" },
+    { start: '17:00', end: '18:00', weekly: false, saturday: true, sunday: false, come_from_sfx: false, itineraries_name: "sjc_sfx", itineraries_alias: "São José dos Campos x São francisco Xavier" },
+    { start: '07:00', end: '08:00', weekly: false, saturday: false, sunday: true, come_from_sfx: false, itineraries_name: "sjc_sfx", itineraries_alias: "São José dos Campos x São francisco Xavier" },
+    { start: '14:00', end: '15:00', weekly: false, saturday: false, sunday: true, come_from_sfx: false, itineraries_name: "sjc_sfx", itineraries_alias: "São José dos Campos x São francisco Xavier" },
 
   ]);
 };
