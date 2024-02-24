@@ -1,3 +1,4 @@
+const logger = require('./src/configs/logger')
 require('dotenv').config()
 
 module.exports = {
@@ -10,7 +11,6 @@ module.exports = {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       charset: 'utf8',
-      timezone: 'UTC',
     },
     pool: {
       min: 0,
@@ -24,6 +24,20 @@ module.exports = {
       directory: 'src/seeds',
   },
   debug: process.env.DB_DEBUG,
+  log: {
+      warn(message) {
+        logger.warn('[Knex Warning]:', message);
+      },
+      error(message) {
+        logger.error('[Knex Error]:', message);
+      },
+      deprecate(message) {
+        logger.info('[Knex Deprecation]:', message);
+      },
+      debug(message) {
+        logger.debug('[Knex Debug]:', message);
+      },
+    },
   },
 
   production: {
@@ -35,7 +49,6 @@ module.exports = {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       charset: 'utf8',
-      ssl: process.env.DB_SSL,
     },
     pool: {
       min: 0,
@@ -48,7 +61,14 @@ module.exports = {
     seeds: {
       directory: 'src/seeds',
   },
-  debug: process.env.DB_DEBUG
-  }
-
+  debug: process.env.DB_DEBUG,
+    log: {
+        error(message) {
+          logger.error('[Knex Error]:', message);
+        },
+        warn(message) {
+          logger.warn('[Knex Warning]:', message);
+        },
+    },
+  },
 };

@@ -80,6 +80,10 @@ const doc = {
   },
 }
 
-swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
-  require('../index.js');
-});
+const generateSwagger = () => {
+  swaggerAutogen(outputFile, endpointsFiles, doc);
+};
+
+generateSwagger();
+
+module.exports = generateSwagger;
