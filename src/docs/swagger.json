@@ -5,7 +5,7 @@
     "title": "api-bus-schedules",
     "description": "Simple api to manage and control itineraries and schedules of bus service."
   },
-  "host": "localhost:8000",
+  "host": "api-bus-schedules-dev.lobatoconecta.com.br",
   "basePath": "/",
   "tags": [
     {

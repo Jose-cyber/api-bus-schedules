@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const expressLogger = require('../middleware/loggerExpress.js')
 const app = express();
 
 // Routes
@@ -16,10 +17,12 @@ const corsOptions = require('../middleware/corsConfig.js');
 
 // Security config
 app.disable("x-powered-by");
+app.use(expressLogger);
 app.use(cors(corsOptions));
-
-// Using body-parser
 app.use(bodyParser.json());
+
+
+
 
 // calling my routes
 app.use(indexRoutes);
