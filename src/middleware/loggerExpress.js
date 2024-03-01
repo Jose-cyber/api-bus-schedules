@@ -15,7 +15,7 @@ const expressLogger = expressWinston.logger({
   ignoreRoute: function (req, res) { return false; },
   statusLevels: false,
   level: function (req, res) {
-    var level = "";
+    let level = "";
     if (res.statusCode >= 100) { level = "info"; }
     if (res.statusCode >= 400) { level = "warn"; }
     if (res.statusCode >= 500) { level = "error"; }

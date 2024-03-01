@@ -7,7 +7,7 @@ const schedulerRoutes = express.Router();
 
 
 schedulerRoutes
-    .route('/api/v1/schedules/list')
+    .route('/api-bus-schedules/api/v1/schedules/list')
     .get(schedules.list, ()=>{
       // #swagger.tags = ['Schedules']
       
@@ -56,7 +56,7 @@ schedulerRoutes
     })
 
 schedulerRoutes
-    .route('/api/v1/schedules/create')
+    .route('/api-bus-schedules/api/v1/schedules/create')
     .post(schedules.create, ()=>{
       // #swagger.tags = ['Schedules']
       
@@ -84,7 +84,7 @@ schedulerRoutes
     })
 
 schedulerRoutes
-    .route('/api/v1/schedules/edit')
+    .route('/api-bus-schedules/api/v1/schedules/edit')
     .patch(schedules.edit, ()=>{
       // #swagger.tags = ['Schedules']
 
@@ -112,7 +112,7 @@ schedulerRoutes
     })
 
 schedulerRoutes
-    .route('/api/v1/schedules/delete')
+    .route('/api-bus-schedules/api/v1/schedules/delete')
     .delete(schedules.delete, ()=>{
       // #swagger.tags = ['Schedules']
 

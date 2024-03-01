@@ -5,7 +5,7 @@ const itinerariesRoutes = express.Router();
 
 
 itinerariesRoutes
-    .route('/api/v1/itineraries/list',)
+    .route('/api-bus-schedules/api/v1/itineraries/list',)
     .get(Itineraries.list, ()=>{
       // #swagger.tags = ['Itineraries']
       
@@ -21,7 +21,7 @@ itinerariesRoutes
     })
 
 itinerariesRoutes
-    .route('/api/v1/itineraries/create',)
+    .route('/api-bus-schedules/api/v1/itineraries/create',)
     .post(Itineraries.create, ()=>{
       // #swagger.tags = ['Itineraries']
 
@@ -49,7 +49,7 @@ itinerariesRoutes
     })
     
 itinerariesRoutes
-    .route('/api/v1/itineraries/delete',)
+    .route('/api-bus-schedules/api/v1/itineraries/delete',)
     .delete(Itineraries.delete, ()=>{
       // #swagger.tags = ['Itineraries']
 
@@ -78,7 +78,7 @@ itinerariesRoutes
     })
 
 itinerariesRoutes
-    .route('/api/v1/itineraries/edit',)
+    .route('/api-bus-schedules/api/v1/itineraries/edit',)
     .patch(Itineraries.edit, ()=> {
       // #swagger.tags = ['Itineraries']
       
