@@ -62,7 +62,7 @@
         }
       }
     },
-    "/api/v1/health": {
+    "/api-bus-schedules/health": {
       "get": {
         "tags": [
           "Actuator"
@@ -103,7 +103,7 @@
         }
       }
     },
-    "/api/v1/itineraries/list": {
+    "/api-bus-schedules/api/v1/itineraries/list": {
       "get": {
         "tags": [
           "Itineraries"
@@ -155,7 +155,7 @@
         }
       }
     },
-    "/api/v1/itineraries/create": {
+    "/api-bus-schedules/api/v1/itineraries/create": {
       "post": {
         "tags": [
           "Itineraries"
@@ -221,7 +221,7 @@
         }
       }
     },
-    "/api/v1/itineraries/delete": {
+    "/api-bus-schedules/api/v1/itineraries/delete": {
       "delete": {
         "tags": [
           "Itineraries"
@@ -291,7 +291,7 @@
         }
       }
     },
-    "/api/v1/itineraries/edit": {
+    "/api-bus-schedules/api/v1/itineraries/edit": {
       "patch": {
         "tags": [
           "Itineraries"
@@ -391,7 +391,7 @@
         }
       }
     },
-    "/api/v1/schedules/list": {
+    "/api-bus-schedules/api/v1/schedules/list": {
       "get": {
         "tags": [
           "Schedules"
@@ -508,7 +508,7 @@
         }
       }
     },
-    "/api/v1/schedules/create": {
+    "/api-bus-schedules/api/v1/schedules/create": {
       "post": {
         "tags": [
           "Schedules"
@@ -574,7 +574,7 @@
         }
       }
     },
-    "/api/v1/schedules/edit": {
+    "/api-bus-schedules/api/v1/schedules/edit": {
       "patch": {
         "tags": [
           "Schedules"
@@ -644,7 +644,7 @@
         }
       }
     },
-    "/api/v1/schedules/delete": {
+    "/api-bus-schedules/api/v1/schedules/delete": {
       "delete": {
         "tags": [
           "Schedules"

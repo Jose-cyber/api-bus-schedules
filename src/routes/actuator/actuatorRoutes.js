@@ -5,7 +5,7 @@ const actautorRoutes = express.Router();
 
 
 actautorRoutes
-    .route('/api/v1/health')
+    .route('/api-bus-schedules/health')
     .get(healthAndChecking.actuator, () =>{
       // #swagger.tags = ['Actuator']
       

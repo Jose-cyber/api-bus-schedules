@@ -29,7 +29,7 @@ app.use(indexRoutes);
 app.use(actautorRoutes);
 app.use(itinerariesRoutes);
 app.use(schedulerRoutes);
-app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use('/api-bus-schedules/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
 module.exports = app;
