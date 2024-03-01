@@ -1,9 +1,7 @@
 const logger = require('./configs/logger.js');
 const app = require('./infra/server.js');
 require('dotenv').config()
-const generateSwagger = require('./configs/swaggerAutogen.js')
 
-generateSwagger()
 
 app.listen(process.env.PORT || 8080, () => {
    logger.info("Server runing on: http://0.0.0.0:" + process.env.PORT || 8080)
