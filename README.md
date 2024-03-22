@@ -46,7 +46,3 @@ Image on my own docker repository:
 <a href="https://hub.docker.com/repository/docker/josecyber/api-bus-schedules/general">api-bus-schedules</a>
 
 <hr>
-
-
-
-
