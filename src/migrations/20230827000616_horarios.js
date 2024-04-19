@@ -1,13 +1,13 @@
 exports.up = function(knex) {
     return knex.schema
         .createTable('itineraries', function(table){
-            table.increments('id').primary();
+            table.increments('id').primary().unique();
             table.string('name', 55).notNullable().unique()
             table.string('alias', 255).notNullable().unique()
         })
 
         .createTable('schedules', function(table){
-            table.increments('id').primary();
+            table.increments('id').primary().unique();
             table.time('start').notNull();
             table.time('end').notNull();
             table.boolean('weekly').notNullable();
@@ -16,12 +16,20 @@ exports.up = function(knex) {
             table.boolean('come_from_sfx').notNullable();
             table.string('itineraries_name').references('name').inTable('itineraries').index();
             table.string('itineraries_alias').references('alias').inTable('itineraries').index();
-        });
+        })
+
+        .createTable('ways', function(table){
+            table.increments('id').primary().unique();
+            table.string('route_alias', 255).notNull().references('alias').inTable('itineraries').index();;
+            table.string('route_name', 100).notNull().references('name').inTable('itineraries').index();;
+            table.jsonb('bus_stops')
+         });
 };
 
 exports.down = function(knex) {
     return knex.schema
+      .dropTable('schedules')
+      .dropTable('ways')
       .dropTable('itineraries')
-      .dropTable('schedules');
 };
 

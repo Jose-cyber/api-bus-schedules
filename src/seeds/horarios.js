@@ -5,7 +5,9 @@
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
   await knex('schedules').del()
+  await knex('ways').del()
   await knex('itineraries').del()
+  
 
   await knex('itineraries').insert([
     { name: 'ml_sjc', alias: "Monteiro Lobato x São José dos Campos"},
@@ -65,4 +67,107 @@ exports.seed = async function(knex) {
     { start: '14:00', end: '15:00', weekly: false, saturday: false, sunday: true, come_from_sfx: false, itineraries_name: "sjc_sfx", itineraries_alias: "São José dos Campos x São francisco Xavier" },
 
   ]);
-};
+
+  await knex('ways').insert([
+    { 
+      route_alias: 'Monteiro Lobato x São José dos Campos', 
+      route_name: 'ml_sjc', 
+      bus_stops: JSON.stringify([
+        "Parada 1", 
+        "Parada 2", 
+        "Parada 3",
+        "Parada 4",
+        "Parada 5", 
+        "Parada 6", 
+        "Parada 7",
+        "Parada 7"
+       ]) 
+    },
+    { 
+      route_alias: 'Monteiro Lobato x São Benedito', 
+      route_name: 'ml_sbt', 
+      bus_stops: JSON.stringify([
+        "Parada 1", 
+        "Parada 2", 
+        "Parada 3",
+        "Parada 4",
+        "Parada 5", 
+        "Parada 6", 
+        "Parada 7",
+        "Parada 7"
+       ]) 
+    },
+    { 
+      route_alias: 'São Benedito X Monteiro Lobato', 
+      route_name: 'sbt_ml', 
+      bus_stops: JSON.stringify([
+        "Parada 1", 
+        "Parada 2", 
+        "Parada 3",
+        "Parada 4",
+        "Parada 5", 
+        "Parada 6", 
+        "Parada 7",
+        "Parada 7"
+       ]) 
+    },
+    { 
+      route_alias: 'São francisco Xavier x São José dos Campos', 
+      route_name: 'sfx_sjc', 
+      bus_stops: JSON.stringify([
+        "Parada 1", 
+        "Parada 2", 
+        "Parada 3",
+        "Parada 4",
+        "Parada 5", 
+        "Parada 6", 
+        "Parada 7",
+        "Parada 7"
+       ]) 
+    },
+    { 
+      route_alias: 'São José dos Campos x Monteiro Lobato', 
+      route_name: 'sjc_ml', 
+      bus_stops: JSON.stringify([
+        "Parada 1", 
+        "Parada 2", 
+        "Parada 3",
+        "Parada 4",
+        "Parada 5", 
+        "Parada 6", 
+        "Parada 7",
+        "Parada 7"
+       ]) 
+    },
+    { 
+      route_alias: 'São José dos Campos x São francisco Xavier', 
+      route_name: 'sjc_sfx', 
+      bus_stops: JSON.stringify([
+        "Parada 1", 
+        "Parada 2", 
+        "Parada 3",
+        "Parada 4",
+        "Parada 5", 
+        "Parada 6", 
+        "Parada 7",
+        "Parada 7"
+       ]) 
+    },
+    { 
+      route_alias: 'São francisco Xavier x São José dos Campos', 
+      route_name: 'sfx_sjc', 
+      bus_stops: JSON.stringify([
+        "Parada 1", 
+        "Parada 2", 
+        "Parada 3",
+        "Parada 4",
+        "Parada 5", 
+        "Parada 6", 
+        "Parada 7",
+        "Parada 7"
+       ]) 
+    }
+
+    
+  ]);
+}
