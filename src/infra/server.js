@@ -8,6 +8,7 @@ const indexRoutes = require('../routes/index/indexRoutes.js');
 const actautorRoutes = require('../routes/actuator/actuatorRoutes.js');
 const itinerariesRoutes = require('../routes/itineraries/itinerariesRoutes.js');
 const schedulerRoutes = require('../routes/schedules/schedulesRoutes.js');
+const waysRoutes = require('../routes/ways/waysRoutes.js')
 
 // configs
 const swaggerUi = require('swagger-ui-express');
@@ -29,6 +30,7 @@ app.use(indexRoutes);
 app.use(actautorRoutes);
 app.use(itinerariesRoutes);
 app.use(schedulerRoutes);
+app.use(waysRoutes)
 app.use('/api-bus-schedules/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
