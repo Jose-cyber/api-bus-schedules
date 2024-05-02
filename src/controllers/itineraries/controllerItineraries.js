@@ -11,7 +11,6 @@ class ControllerItineraries {
             .from('itineraries')
             .then((query_result) => {
                 res.status(200).json({"itineraries": query_result})
-                logger.info(query_result)
             })
             .catch((error) => {
                 res.status(500).json({ status: 'Error'})
