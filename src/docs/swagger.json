@@ -17,6 +17,10 @@
       "description": "Endpoints"
     },
     {
+      "name": "Ways",
+      "description": "Endpoints"
+    },
+    {
       "name": "Actuator",
       "description": "Endpoints"
     },
@@ -708,6 +712,46 @@
             }
           }
         }
+      }
+    },
+    "/api-bus-schedules/api/v1/ways/list": {
+      "get": {
+        "tags": [
+          "Ways"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api-bus-schedules/api/v1/ways/list/filter": {
+      "get": {
+        "tags": [
+          "Ways"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api-bus-schedules/api/v1/ways/create": {
+      "post": {
+        "tags": [
+          "Ways"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api-bus-schedules/api/v1/ways/delete": {
+      "delete": {
+        "tags": [
+          "Ways"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
       }
     }
   },

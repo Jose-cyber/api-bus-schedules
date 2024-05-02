@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const expressLogger = require('../middleware/loggerExpress.js')
+const expressLogger = require('../middlewares/loggerExpress.js')
 const app = express();
 
 // Routes
@@ -14,7 +14,8 @@ const waysRoutes = require('../routes/ways/waysRoutes.js')
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('../docs/swagger.json');
 const bodyParser = require('body-parser');
-const corsOptions = require('../middleware/corsConfig.js');
+const corsOptions = require('../middlewares/corsConfig.js');
+const prometheusMiddleware = require('../middlewares/prometheusMetrics.js')
 
 // Security config
 app.disable("x-powered-by");
@@ -31,7 +32,9 @@ app.use(actautorRoutes);
 app.use(itinerariesRoutes);
 app.use(schedulerRoutes);
 app.use(waysRoutes)
-app.use('/api-bus-schedules/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
+//metrics and docs
+app.use('/api-bus-schedules/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use(prometheusMiddleware)
 
 module.exports = app;

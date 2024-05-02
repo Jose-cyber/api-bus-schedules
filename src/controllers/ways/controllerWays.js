@@ -3,9 +3,6 @@ const logger = require('../../configs/logger.js');
 const listQueryParamSchema = require('../../schemas/ways/listWaySchema.js')
 
 class ControllerWays{
-    create(){
-
-    }
     list(req, res){
        knex
          .select()
@@ -37,10 +34,6 @@ class ControllerWays{
         return res.status(400).json({"Missing": "Parameter"})
       }
    }
-    delete(){
-
-    }
-
 }
 
 

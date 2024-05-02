@@ -4,7 +4,7 @@ const logger = require('../../configs/logger.js');
 class Health {
     actuator(req, res){
         knex.raw("SELECT 1").then(() => {
-            res.json({status: "UP"}).status(200);
+            res.status(200).json({status: "UP"});
         })
         .catch((error) => {
             res.status(500).json({status: "DOWN"})

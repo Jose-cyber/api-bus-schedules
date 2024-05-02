@@ -11,8 +11,7 @@ async function runMigrationsAndSeeds() {
             await knex.migrate.up(config[environment]);
             logger.info('Database migrations applied successfully.');            
         } catch (error) {
-            logger.error(`Error applying migrations and/or seeds: ${error.message}`);
-            throw error; // Re-throw to halt execution if necessary
+            logger.error(`Error applying migrations: ${error.message}`);
         }
     }
 
@@ -24,7 +23,6 @@ async function runMigrationsAndSeeds() {
         }
         catch (error) {
             logger.error(`Error applying seeds: ${error.message}`);
-            throw error; // Re-throw to halt execution if necessary
         }
     }
 }

@@ -13,3 +13,4 @@ process.on('uncaughtException', function (exception) {
    logger.error(exception);
 });
 
+module.exports = app;

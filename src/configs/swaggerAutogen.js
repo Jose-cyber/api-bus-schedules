@@ -24,6 +24,10 @@ const doc = {
       description: 'Endpoints',
     },
     {
+      name: 'Ways',
+      description: 'Endpoints',
+    },
+    {
       name: 'Actuator',
       description: 'Endpoints',
     },

@@ -6,19 +6,27 @@ const ways = new controllerWays
 
 waysRoutes
   .route('/api-bus-schedules/api/v1/ways/list')
-  .get(ways.list)
-
+  .get(ways.list, ()=>{
+    // #swagger.tags = ['Ways']
+  })
+  
 waysRoutes
   .route('/api-bus-schedules/api/v1/ways/list/filter')
-  .get(ways.listByName)
+  .get(ways.listByName, ()=>{
+    // #swagger.tags = ['Ways']
+  })
 
 waysRoutes
   .route('/api-bus-schedules/api/v1/ways/create')
-  .post()
+  .post(()=>{
+    // #swagger.tags = ['Ways']
+  })
 
 waysRoutes
   .route('/api-bus-schedules/api/v1/ways/delete')
-  .delete()
+  .delete(()=>{
+    // #swagger.tags = ['Ways']
+  })
 
 
 
