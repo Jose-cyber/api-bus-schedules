@@ -4,7 +4,7 @@ const schedules = new ControllerSchedules
 
 
 const schedulerRoutes = express.Router();
-
+const verifyToken = require('../../middlewares/authMiddleware')
 
 schedulerRoutes
     .route('/api-bus-schedules/api/v1/schedules/list')
@@ -57,8 +57,12 @@ schedulerRoutes
 
 schedulerRoutes
     .route('/api-bus-schedules/api/v1/schedules/create')
-    .post(schedules.create, ()=>{
+    .post(verifyToken, schedules.create, ()=>{
       // #swagger.tags = ['Schedules']
+
+      /* #swagger.security = [{
+        "bearerAuth": []
+      }] */
       
       /*#swagger.parameters['send'] = {
         in: 'body',
@@ -84,9 +88,13 @@ schedulerRoutes
     })
 
 schedulerRoutes
-    .route('/api-bus-schedules/api/v1/schedules/edit')
-    .patch(schedules.edit, ()=>{
+    .route('/api-bus-schedules/api/v1/schedules/update')
+    .patch(verifyToken, schedules.edit, ()=>{
       // #swagger.tags = ['Schedules']
+
+      /* #swagger.security = [{
+        "bearerAuth": []
+      }] */
 
       /*#swagger.parameters['send'] = {
         in: 'body',
@@ -113,8 +121,12 @@ schedulerRoutes
 
 schedulerRoutes
     .route('/api-bus-schedules/api/v1/schedules/delete')
-    .delete(schedules.delete, ()=>{
+    .delete(verifyToken, schedules.delete, ()=>{
       // #swagger.tags = ['Schedules']
+      
+      /* #swagger.security = [{
+        "bearerAuth": []
+      }] */
 
       /*#swagger.parameters['send'] = {
         in: 'body',

@@ -3,6 +3,8 @@ const ControllerItineraries = require('../../controllers/itineraries/controllerI
 const Itineraries = new ControllerItineraries
 const itinerariesRoutes = express.Router();
 
+const verifyToken = require('../../middlewares/authMiddleware')
+
 
 itinerariesRoutes
     .route('/api-bus-schedules/api/v1/itineraries/list',)
@@ -22,8 +24,12 @@ itinerariesRoutes
 
 itinerariesRoutes
     .route('/api-bus-schedules/api/v1/itineraries/create',)
-    .post(Itineraries.create, ()=>{
+    .post(verifyToken, Itineraries.create, ()=>{
       // #swagger.tags = ['Itineraries']
+      
+      /* #swagger.security = [{
+        "bearerAuth": []
+      }] */
 
       /*#swagger.parameters['send'] = {
         in: 'body',
@@ -50,8 +56,12 @@ itinerariesRoutes
     
 itinerariesRoutes
     .route('/api-bus-schedules/api/v1/itineraries/delete',)
-    .delete(Itineraries.delete, ()=>{
+    .delete(verifyToken, Itineraries.delete, ()=>{
       // #swagger.tags = ['Itineraries']
+      
+      /* #swagger.security = [{
+        "bearerAuth": []
+      }] */
 
       /*#swagger.parameters['send'] = {
         in: 'body',
@@ -78,10 +88,14 @@ itinerariesRoutes
     })
 
 itinerariesRoutes
-    .route('/api-bus-schedules/api/v1/itineraries/edit',)
-    .patch(Itineraries.edit, ()=> {
+    .route('/api-bus-schedules/api/v1/itineraries/update',)
+    .patch(verifyToken, Itineraries.edit, ()=> {
       // #swagger.tags = ['Itineraries']
       
+      /* #swagger.security = [{
+        "bearerAuth": []
+      }] */
+
       /* #swagger.parameters['send'] = {
         in: 'body',
         description: 'Update register.',

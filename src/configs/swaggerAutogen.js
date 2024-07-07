@@ -1,4 +1,4 @@
-const swaggerAutogen = require('swagger-autogen')();
+const swaggerAutogen = require('swagger-autogen')({openapi: '3.0.0'});
 const outputFile = '../docs/swagger.json';
 const endpointsFiles = ['../infra/server.js'];
 require('dotenv').config();
@@ -16,6 +16,10 @@ const doc = {
   produces: ['application/json'],
   tags: [
     {
+      name: 'Authentication',
+      description: 'Endpoints',
+    },
+    {
       name: 'Itineraries',
       description: 'Endpoints',
     },
@@ -28,7 +32,11 @@ const doc = {
       description: 'Endpoints',
     },
     {
-      name: 'Actuator',
+      name: 'Maps',
+      description: 'Endpoints',
+    },
+    {
+      name: 'Health',
       description: 'Endpoints',
     },
     {
@@ -36,6 +44,18 @@ const doc = {
       description: 'Endpoints',
     }
   ],
+  components: {
+    securitySchemes: {
+      basicAuth: {
+        type: 'http',
+        scheme: 'basic'
+      }, 
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer'
+      }
+    }
+  },
   definitions: {
     itinerariesCreate: {
         name: "sjc_sp",
@@ -84,10 +104,8 @@ const doc = {
   },
 }
 
-const generateSwagger = () => {
-  swaggerAutogen(outputFile, endpointsFiles, doc);
+async function generateSwagger(){
+  await swaggerAutogen(outputFile, endpointsFiles, doc)
 };
-
-generateSwagger();
-
-module.exports = generateSwagger;
+ 
+generateSwagger()

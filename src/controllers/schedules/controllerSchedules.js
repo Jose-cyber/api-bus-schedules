@@ -14,8 +14,7 @@ class ControllerSchedules{
             .where(reqParamValidator)
             .from('schedules')
             .then((queryResult) => {
-                res.status(200).json({"schedules": queryResult})
-                logger.info(queryResult)
+              res.status(200).json({"schedules": queryResult})
           })
           .catch((error) => {
               res.status(400).json({ Status: 'Error!'})

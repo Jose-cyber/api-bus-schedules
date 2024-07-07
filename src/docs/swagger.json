@@ -1,13 +1,23 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
     "title": "api-bus-schedules",
     "description": "Simple api to manage and control itineraries and schedules of bus service."
   },
-  "host": "dev.lobatoconecta.com.br",
-  "basePath": "/",
+  "servers": [
+    {
+      "url": "http://dev.lobatoconecta.com.br/"
+    },
+    {
+      "url": "https://dev.lobatoconecta.com.br/"
+    }
+  ],
   "tags": [
+    {
+      "name": "Authentication",
+      "description": "Endpoints"
+    },
     {
       "name": "Itineraries",
       "description": "Endpoints"
@@ -21,7 +31,11 @@
       "description": "Endpoints"
     },
     {
-      "name": "Actuator",
+      "name": "Maps",
+      "description": "Endpoints"
+    },
+    {
+      "name": "Health",
       "description": "Endpoints"
     },
     {
@@ -29,17 +43,166 @@
       "description": "Endpoints"
     }
   ],
-  "schemes": [
-    "http",
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
   "paths": {
+    "/api-bus-schedules/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "Recebe um nome de usuário e senha via autenticação básica e retorna um token JWT",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso ao fazer login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Credenciais inválidas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Credenciais inválidas"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Credenciais inválidas"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Credenciais inválidas"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Erro interno do servidor"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Erro interno do servidor"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Erro interno do servidor"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
     "/": {
       "get": {
         "tags": [
@@ -50,6 +213,36 @@
         "responses": {
           "200": {
             "description": "Index page",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "service": {
+                      "type": "string",
+                      "example": "api-bus-schedules"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "service": {
+                      "type": "string",
+                      "example": "api-bus-schedules"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -66,16 +259,46 @@
         }
       }
     },
-    "/api-bus-schedules/health": {
+    "/health": {
       "get": {
         "tags": [
-          "Actuator"
+          "Health"
         ],
         "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "Success to connect to database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "UP"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "UP"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -91,6 +314,36 @@
           },
           "500": {
             "description": "Failed to connect to database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "DOWN"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "DOWN"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -117,6 +370,58 @@
         "responses": {
           "200": {
             "description": "Register data, and sent email",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number",
+                        "example": 2
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "ml_sbt"
+                      },
+                      "alias": {
+                        "type": "string",
+                        "example": "Monteiro Lobato x São Benedito"
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number",
+                        "example": 2
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "ml_sbt"
+                      },
+                      "alias": {
+                        "type": "string",
+                        "example": "Monteiro Lobato x São Benedito"
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "array",
               "items": {
@@ -143,6 +448,36 @@
           },
           "500": {
             "description": "Register data, and sent email",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Error"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -172,13 +507,50 @@
             "description": "Register and send information.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/itinerariesCreate"
+              "$ref": "#/components/schemas/itinerariesCreate"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "201": {
             "description": "Register data, and sent email",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Success!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Success!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -194,6 +566,36 @@
           },
           "400": {
             "description": "Bad request, schema or parameters is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -207,8 +609,41 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Failed to connect to database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Failed"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Failed"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -222,7 +657,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api-bus-schedules/api/v1/itineraries/delete": {
@@ -238,13 +678,58 @@
             "description": "Delete register.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/itinerariesDelete"
+              "$ref": "#/components/schemas/itinerariesDelete"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "Register in database was deleted success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Success!"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Register {'id': 7'name': sjc_sp'alias': São José dos Campos X São Paulo} deleted successfully."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Success!"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Register {'id': 7'name': sjc_sp'alias': São José dos Campos X São Paulo} deleted successfully."
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -264,6 +749,36 @@
           },
           "400": {
             "description": "Bad request, schema or parameters is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -277,8 +792,41 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Failed to connect to database!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Failed"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Failed"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -292,10 +840,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api-bus-schedules/api/v1/itineraries/edit": {
+    "/api-bus-schedules/api/v1/itineraries/update": {
       "patch": {
         "tags": [
           "Itineraries"
@@ -308,13 +861,110 @@
             "description": "Update register.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/itinerariesEdit"
+              "$ref": "#/components/schemas/itinerariesEdit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "Updated register in database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Operation": {
+                      "type": "string",
+                      "example": "Sucess!"
+                    },
+                    "Action": {
+                      "type": "string",
+                      "example": "Update"
+                    },
+                    "Register": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "sjc_sp"
+                        },
+                        "alias": {
+                          "type": "string",
+                          "example": "São José dos Campos X São Paulo"
+                        }
+                      }
+                    },
+                    "New Register": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "sjc_sp"
+                        },
+                        "alias": {
+                          "type": "string",
+                          "example": "São José dos Campos X São Paulo Capital"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Operation": {
+                      "type": "string",
+                      "example": "Sucess!"
+                    },
+                    "Action": {
+                      "type": "string",
+                      "example": "Update"
+                    },
+                    "Register": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "sjc_sp"
+                        },
+                        "alias": {
+                          "type": "string",
+                          "example": "São José dos Campos X São Paulo"
+                        }
+                      }
+                    },
+                    "New Register": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "sjc_sp"
+                        },
+                        "alias": {
+                          "type": "string",
+                          "example": "São José dos Campos X São Paulo Capital"
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -360,6 +1010,36 @@
           },
           "400": {
             "description": "Request or schema is not valid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -373,8 +1053,49 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Failed to connect to database!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Operation": {
+                      "type": "string",
+                      "example": "Failed!"
+                    },
+                    "Action": {
+                      "type": "string",
+                      "example": "Update"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Operation": {
+                      "type": "string",
+                      "example": "Failed!"
+                    },
+                    "Action": {
+                      "type": "string",
+                      "example": "Update"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -392,7 +1113,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api-bus-schedules/api/v1/schedules/list": {
@@ -407,33 +1133,135 @@
             "in": "query",
             "description": "Filter by itinerarie.",
             "required": false,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "semanal",
             "in": "query",
-            "type": "boolean",
             "description": "Filter by semanal values.",
-            "required": false
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
             "name": "sabado",
             "in": "query",
-            "type": "boolean",
             "description": "Filter by sabado values.",
-            "required": false
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
             "name": "domingo",
             "in": "query",
-            "type": "boolean",
             "description": "Filter by domingo values.",
-            "required": false
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "Listed all register",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "horarios": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 2
+                          },
+                          "saida": {
+                            "type": "string",
+                            "example": "06:40:00"
+                          },
+                          "chegada": {
+                            "type": "string",
+                            "example": "07:40:00"
+                          },
+                          "semanal": {
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "sabado": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "domingo": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "itinerario": {
+                            "type": "string",
+                            "example": "ml_sjc"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "horarios": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 2
+                          },
+                          "saida": {
+                            "type": "string",
+                            "example": "06:40:00"
+                          },
+                          "chegada": {
+                            "type": "string",
+                            "example": "07:40:00"
+                          },
+                          "semanal": {
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "sabado": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "domingo": {
+                            "type": "boolean",
+                            "example": false
+                          },
+                          "itinerario": {
+                            "type": "string",
+                            "example": "ml_sjc"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -481,6 +1309,36 @@
           },
           "400": {
             "description": "Bad request, schema or missing parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing or wrong Parameter"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Missing or wrong Parameter"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -496,6 +1354,36 @@
           },
           "500": {
             "description": "Failed to connect to database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "Error!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "Error!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -525,13 +1413,50 @@
             "description": "Register new schedule",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/schedulesCreate"
+              "$ref": "#/components/schemas/schedulesCreate"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "201": {
             "description": "Data was registered in database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "New Route Created": {
+                      "type": "string",
+                      "example": "Sucess!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "New Route Created": {
+                      "type": "string",
+                      "example": "Sucess!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -547,6 +1472,36 @@
           },
           "400": {
             "description": "Bad request, schema or parameter is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -560,8 +1515,41 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Failed to connect to database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Create route": {
+                      "type": "string",
+                      "example": "failed!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Create route": {
+                      "type": "string",
+                      "example": "failed!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -575,10 +1563,15 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/api-bus-schedules/api/v1/schedules/edit": {
+    "/api-bus-schedules/api/v1/schedules/update": {
       "patch": {
         "tags": [
           "Schedules"
@@ -591,13 +1584,50 @@
             "description": "Edit an existent schedule",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/schedulesEdit"
+              "$ref": "#/components/schemas/schedulesEdit"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "Register was updated in database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "Register 12 updated sucefully"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "Register 12 updated sucefully"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -613,6 +1643,36 @@
           },
           "400": {
             "description": "Bad request, schema or parameter is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -626,8 +1686,49 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Failed to connect to database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "Failed"
+                    },
+                    "Error to update register": {
+                      "type": "number",
+                      "example": 12
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "Failed"
+                    },
+                    "Error to update register": {
+                      "type": "number",
+                      "example": 12
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -645,7 +1746,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api-bus-schedules/api/v1/schedules/delete": {
@@ -661,13 +1767,50 @@
             "description": "Delete an existent schedule",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/schedulesDelete"
+              "$ref": "#/components/schemas/schedulesDelete"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "Register was delete in database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "Register 12 Deleted Sucefully"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "string",
+                      "example": "Register 12 Deleted Sucefully"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -683,6 +1826,36 @@
           },
           "400": {
             "description": "Bad request, schema or parameter is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Missing": {
+                      "type": "string",
+                      "example": "Parameters!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -696,8 +1869,41 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Failed to delete register to database",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Failed"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Failed"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
             "schema": {
               "type": "object",
               "properties": {
@@ -711,7 +1917,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api-bus-schedules/api/v1/ways/list": {
@@ -740,8 +1951,20 @@
           "Ways"
         ],
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
       }
     },
     "/api-bus-schedules/api/v1/ways/delete": {
@@ -750,164 +1973,216 @@
           "Ways"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api-bus-schedules/api/v1/maps/list": {
+      "get": {
+        "tags": [
+          "Maps"
+        ],
+        "description": "",
         "parameters": [],
         "responses": {}
       }
     }
   },
-  "definitions": {
-    "itinerariesCreate": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "example": "sjc_sp"
-        },
-        "alias": {
-          "type": "string",
-          "example": "São José dos Campos X São Paulo"
-        }
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
       }
     },
-    "itinerariesDelete": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 7
+    "schemas": {
+      "itinerariesCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "sjc_sp"
+          },
+          "alias": {
+            "type": "string",
+            "example": "São José dos Campos X São Paulo"
+          }
         },
-        "name": {
-          "type": "string",
-          "example": "sjc_sp"
-        },
-        "alias": {
-          "type": "string",
-          "example": "São José dos Campos X São Paulo"
+        "xml": {
+          "name": "itinerariesCreate"
         }
-      }
-    },
-    "itinerariesEdit": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 8
+      },
+      "itinerariesDelete": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 7
+          },
+          "name": {
+            "type": "string",
+            "example": "sjc_sp"
+          },
+          "alias": {
+            "type": "string",
+            "example": "São José dos Campos X São Paulo"
+          }
         },
-        "alias": {
-          "type": "string",
-          "example": "sjc_sp"
-        },
-        "name": {
-          "type": "string",
-          "example": "São José dos Campos X São Paulo"
-        },
-        "update": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "example": "sjc_mgc"
-            },
-            "alias": {
-              "type": "string",
-              "example": "São José dos Campos X mogi das cruzes"
+        "xml": {
+          "name": "itinerariesDelete"
+        }
+      },
+      "itinerariesEdit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 8
+          },
+          "alias": {
+            "type": "string",
+            "example": "sjc_sp"
+          },
+          "name": {
+            "type": "string",
+            "example": "São José dos Campos X São Paulo"
+          },
+          "update": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "sjc_mgc"
+              },
+              "alias": {
+                "type": "string",
+                "example": "São José dos Campos X mogi das cruzes"
+              }
             }
           }
+        },
+        "xml": {
+          "name": "itinerariesEdit"
         }
-      }
-    },
-    "schedulesCreate": {
-      "type": "object",
-      "properties": {
-        "itinerario": {
-          "type": "string",
-          "example": "sjc_spj"
+      },
+      "schedulesCreate": {
+        "type": "object",
+        "properties": {
+          "itinerario": {
+            "type": "string",
+            "example": "sjc_spj"
+          },
+          "saida": {
+            "type": "string",
+            "example": "00:00"
+          },
+          "chegada": {
+            "type": "string",
+            "example": "00:30"
+          },
+          "semanal": {
+            "type": "boolean",
+            "example": true
+          },
+          "sabado": {
+            "type": "boolean",
+            "example": false
+          },
+          "domingo": {
+            "type": "boolean",
+            "example": false
+          }
         },
-        "saida": {
-          "type": "string",
-          "example": "00:00"
-        },
-        "chegada": {
-          "type": "string",
-          "example": "00:30"
-        },
-        "semanal": {
-          "type": "boolean",
-          "example": true
-        },
-        "sabado": {
-          "type": "boolean",
-          "example": false
-        },
-        "domingo": {
-          "type": "boolean",
-          "example": false
+        "xml": {
+          "name": "schedulesCreate"
         }
-      }
-    },
-    "schedulesDelete": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 45
+      },
+      "schedulesDelete": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 45
+          },
+          "saida": {
+            "type": "string",
+            "example": "06:40:00"
+          },
+          "chegada": {
+            "type": "string",
+            "example": "07:40:00"
+          },
+          "semanal": {
+            "type": "boolean",
+            "example": true
+          },
+          "sabado": {
+            "type": "boolean",
+            "example": false
+          },
+          "domingo": {
+            "type": "boolean",
+            "example": false
+          },
+          "itinerario": {
+            "type": "string",
+            "example": "ml_sjc"
+          }
         },
-        "saida": {
-          "type": "string",
-          "example": "06:40:00"
-        },
-        "chegada": {
-          "type": "string",
-          "example": "07:40:00"
-        },
-        "semanal": {
-          "type": "boolean",
-          "example": true
-        },
-        "sabado": {
-          "type": "boolean",
-          "example": false
-        },
-        "domingo": {
-          "type": "boolean",
-          "example": false
-        },
-        "itinerario": {
-          "type": "string",
-          "example": "ml_sjc"
+        "xml": {
+          "name": "schedulesDelete"
         }
-      }
-    },
-    "schedulesEdit": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 45
+      },
+      "schedulesEdit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 45
+          },
+          "saida": {
+            "type": "string",
+            "example": "06:40:00"
+          },
+          "chegada": {
+            "type": "string",
+            "example": "07:40:00"
+          },
+          "semanal": {
+            "type": "boolean",
+            "example": true
+          },
+          "sabado": {
+            "type": "boolean",
+            "example": false
+          },
+          "domingo": {
+            "type": "boolean",
+            "example": false
+          },
+          "itinerario": {
+            "type": "string",
+            "example": "ml_sjc"
+          }
         },
-        "saida": {
-          "type": "string",
-          "example": "06:40:00"
-        },
-        "chegada": {
-          "type": "string",
-          "example": "07:40:00"
-        },
-        "semanal": {
-          "type": "boolean",
-          "example": true
-        },
-        "sabado": {
-          "type": "boolean",
-          "example": false
-        },
-        "domingo": {
-          "type": "boolean",
-          "example": false
-        },
-        "itinerario": {
-          "type": "string",
-          "example": "ml_sjc"
+        "xml": {
+          "name": "schedulesEdit"
         }
       }
     }

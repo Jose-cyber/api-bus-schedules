@@ -1,13 +1,12 @@
 const express = require('express');
-const Health = require('../../controllers/actuator/controllerActuator')
-const healthAndChecking = new Health
-const actautorRoutes = express.Router();
+const health = require('../../controllers/health/controllerHealth')
+const healthRoutes = express.Router();
 
 
-actautorRoutes
-    .route('/api-bus-schedules/health')
-    .get(healthAndChecking.actuator, () =>{
-      // #swagger.tags = ['Actuator']
+healthRoutes
+    .route('/health')
+    .get(health.check, () =>{
+      // #swagger.tags = ['Health']
       
       /* #swagger.responses[200] = { 
           description: "Success to connect to database",
@@ -21,4 +20,4 @@ actautorRoutes
     })
 
     
-module.exports = actautorRoutes;
+module.exports = healthRoutes;

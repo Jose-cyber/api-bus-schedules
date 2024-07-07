@@ -2,7 +2,7 @@ const knex = require('../../database/config.js');
 const logger = require('../../configs/logger.js');
 
 class Health {
-    actuator(req, res){
+    check(req, res){
         knex.raw("SELECT 1").then(() => {
             res.status(200).json({status: "UP"});
         })
@@ -13,4 +13,6 @@ class Health {
     }
 }
 
-module.exports = Health;
+const health = new Health
+
+module.exports = health;

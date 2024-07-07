@@ -3,6 +3,7 @@ const waysRoutes = express.Router()
 
 const controllerWays = require('../../controllers/ways/controllerWays')
 const ways = new controllerWays
+const verifyToken = require('../../middlewares/authMiddleware')
 
 waysRoutes
   .route('/api-bus-schedules/api/v1/ways/list')
@@ -18,13 +19,13 @@ waysRoutes
 
 waysRoutes
   .route('/api-bus-schedules/api/v1/ways/create')
-  .post(()=>{
+  .post(verifyToken, ()=>{
     // #swagger.tags = ['Ways']
   })
 
 waysRoutes
   .route('/api-bus-schedules/api/v1/ways/delete')
-  .delete(()=>{
+  .delete(verifyToken, ()=>{
     // #swagger.tags = ['Ways']
   })
 
