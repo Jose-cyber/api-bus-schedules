@@ -26,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: josecyber/api-bus-schedules:${{GITHUB_SHA}}
+          tags: josecyber/api-bus-schedules:$GITHUB_SHA
