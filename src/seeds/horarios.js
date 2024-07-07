@@ -64,7 +64,6 @@ exports.seed = async function(knex) {
     { start: '14:00', end: '15:00', weekly: false, saturday: false, sunday: true, come_from_sfx: false, itineraries_name: "sjc_sfx", itineraries_alias: "São José dos Campos x São francisco Xavier" },
 
   ]);
-
   await knex('ways').insert([
     { 
       route_alias: 'Monteiro Lobato x São José dos Campos', 
@@ -198,7 +197,7 @@ exports.seed = async function(knex) {
         "RUA QUINZE DE NOVEMBRO",
         "PRACA CONEGO ANTONIO MANZI"
       ]) 
-    }]),
+    }]);
     await knex('maps').insert([
       {
         maps_name: "ml_sjc",
