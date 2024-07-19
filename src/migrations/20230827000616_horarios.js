@@ -14,6 +14,7 @@ exports.up = function(knex) {
             table.boolean('saturday').notNullable();
             table.boolean('sunday').notNullable();
             table.boolean('come_from_sfx').notNullable();
+            table.boolean('to_sfx').notNullable();
             table.string('itineraries_name').references('name').inTable('itineraries').index();
             table.string('itineraries_alias').references('alias').inTable('itineraries').index();
         })

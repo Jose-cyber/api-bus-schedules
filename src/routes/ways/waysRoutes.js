@@ -15,18 +15,30 @@ waysRoutes
   .route('/api-bus-schedules/api/v1/ways/list/filter')
   .get(ways.listByName, ()=>{
     // #swagger.tags = ['Ways']
+
+    /* #swagger.security = [{
+      "bearerAuth": []
+    }] */
   })
 
 waysRoutes
   .route('/api-bus-schedules/api/v1/ways/create')
   .post(verifyToken, ()=>{
     // #swagger.tags = ['Ways']
+    
+    /* #swagger.security = [{
+      "bearerAuth": []
+    }] */
   })
 
 waysRoutes
   .route('/api-bus-schedules/api/v1/ways/delete')
   .delete(verifyToken, ()=>{
     // #swagger.tags = ['Ways']
+    
+    /* #swagger.security = [{
+      "bearerAuth": []
+    }] */
   })
 
 

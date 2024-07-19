@@ -1,4 +1,5 @@
 const promMid = require('express-prometheus-middleware');
+require('dotenv').config()
 
 const prometheusMiddleware = promMid({
     metricsPath: '/metrics',
@@ -13,7 +14,8 @@ const prometheusMiddleware = promMid({
      * To access /metrics you could do:
      * curl -X GET user:password@localhost:9091/metrics
      */
-    // authenticate: req => req.headers.authorization === 'Basic dXNlcjpwYXNzd29yZA==',
+    authenticate: req => req.headers.authorization === process.env.METRICS_AUTH,
+
     /**
      * Uncommenting the `extraMasks` config will use the list of regexes to
      * reformat URL path names and replace the values found with a placeholder value
