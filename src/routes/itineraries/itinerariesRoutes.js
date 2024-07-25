@@ -13,12 +13,52 @@ itinerariesRoutes
       
       /* #swagger.responses[200] = { 
            description: "Register data, and sent email",
-           schema: [{"id":1,"name":"ml_sjc","alias":"Monteiro Lobato x São José dos Campos"},{"id":2,"name":"ml_sbt","alias":"Monteiro Lobato x São Benedito"}]
-      }*/
+            content: {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "itineraries": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer",
+                              "example": 677
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "ml_sjc"
+                            },
+                            "alias": {
+                              "type": "string",
+                              "example": "Monteiro Lobato x São José dos Campos"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+      }*/    
 
       /* #swagger.responses[500] = {
            description: "Register data, and sent email",
-           schema: { status: 'Error'}
+            content: {
+              "application/json": {
+                schema: { 
+                  "type": "object",
+                  "properties": {
+                      status: {
+                      type: 'string',
+                      example: 'Error'
+                    }
+                }
+              }  
+            }  
+          }
       }*/
     })
 
@@ -43,14 +83,27 @@ itinerariesRoutes
           schema: { "status": "Success!" }
       }*/
 
-      /* #swagger.responses[500] = { 
-          description: "Failed to connect to database",
-          schema: {status: 'Failed'}
-      }*/
       
       /* #swagger.responses[400] = { 
           description: "Bad request, schema or parameters is invalid",
           schema: { Missing: 'Parameters'}
+      }*/
+
+      /* #swagger.responses[500] = {
+           description: "Register data, and sent email",
+            content: {
+              "application/json": {
+                schema: { 
+                  "type": "object",
+                  "properties": {
+                      status: {
+                      type: 'string',
+                      example: 'Error'
+                    }
+                }
+              }  
+            }  
+          }
       }*/
     })
     
@@ -85,6 +138,23 @@ itinerariesRoutes
           schema: { Missing: 'Parameters'}
       }*/
 
+      /* #swagger.responses[500] = {
+           description: "Register data, and sent email",
+            content: {
+              "application/json": {
+                schema: { 
+                  "type": "object",
+                  "properties": {
+                      status: {
+                      type: 'string',
+                      example: 'Error'
+                    }
+                }
+              }  
+            }  
+          }
+      }*/
+
     })
 
 itinerariesRoutes
@@ -108,15 +178,28 @@ itinerariesRoutes
           schema: { "Operation": "Sucess!","Action": "Update","Register": {"name": "sjc_sp","alias": "São José dos Campos X São Paulo"},"New Register": {"name": "sjc_sp", "alias": "São José dos Campos X São Paulo Capital"}}
       }*/
 
-      /* #swagger.responses[500] = { 
-          description: "Failed to connect to database!",
-          schema: {"Operation": "Failed!","Action": "Update"}
-      }*/
 
       /* #swagger.responses[400] = { 
           description: "Request or schema is not valid",
           schema: {"Missing": "Parameters"}
-      }*/     
+      }*/ 
+      
+      /* #swagger.responses[500] = {
+           description: "Register data, and sent email",
+            content: {
+              "application/json": {
+                schema: { 
+                  "type": "object",
+                  "properties": {
+                      status: {
+                      type: 'string',
+                      example: 'Error'
+                    }
+                }
+              }  
+            }  
+          }
+      }*/    
     })
 
 

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "prd": "node src/index.js",
+    "prd": "npm run swagger && node src/index.js",
     "migrate": "knex migrate:latest",
     "unmigrate": "knex migrate:rollback",
     "seeds": "knex seed:run",

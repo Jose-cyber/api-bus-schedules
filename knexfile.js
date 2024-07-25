@@ -60,15 +60,21 @@ module.exports = {
     },
     seeds: {
       directory: 'src/seeds',
-  },
-  debug: process.env.DB_DEBUG,
+    },
+    debug: process.env.DB_DEBUG,
     log: {
-        error(message) {
-          logger.error('[Knex Error]:', message);
-        },
-        warn(message) {
-          logger.warn('[Knex Warning]:', message);
-        },
+      warn(message) {
+        logger.warn('[Knex Warning]:', message);
+      },
+      error(message) {
+        logger.error('[Knex Error]:', message);
+      },
+      deprecate(message) {
+        logger.info('[Knex Deprecation]:', message);
+      },
+      debug(message) {
+        logger.debug('[Knex Debug]:', message);
+      },
     },
   },
 };

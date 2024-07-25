@@ -8,7 +8,6 @@ async function auth(req, res){
         const [, hash] = req.headers.authorization.split(' ');
         const [username, password] = Buffer.from(hash, 'base64').toString().split(':');
         
-        console.log(username, password)
         // Verificando se o username e password são corretos
         if (username !== process.env.USERNAME && password !== process.env.PASSWORD){
           return res.status(401).json({ error: 'Authentication failed' });

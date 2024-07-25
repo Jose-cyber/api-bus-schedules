@@ -104,8 +104,6 @@ const doc = {
   },
 }
 
-async function generateSwagger(){
-  await swaggerAutogen(outputFile, endpointsFiles, doc)
-};
- 
-generateSwagger()
+swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
+    require('../index.js')
+})

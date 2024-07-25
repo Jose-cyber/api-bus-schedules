@@ -7,10 +7,10 @@
   },
   "servers": [
     {
-      "url": "http://horariodeonibusml.com.br/"
+      "url": "http://api.horariodeonibusml.com.br/"
     },
     {
-      "url": "https://horariodeonibusml.com.br/"
+      "url": "https://api.horariodeonibusml.com.br/"
     }
   ],
   "tags": [
@@ -373,76 +373,30 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "number",
-                        "example": 2
-                      },
-                      "name": {
-                        "type": "string",
-                        "example": "ml_sbt"
-                      },
-                      "alias": {
-                        "type": "string",
-                        "example": "Monteiro Lobato x São Benedito"
+                  "type": "object",
+                  "properties": {
+                    "itineraries": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "example": 677
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "ml_sjc"
+                          },
+                          "alias": {
+                            "type": "string",
+                            "example": "Monteiro Lobato x São José dos Campos"
+                          }
+                        }
                       }
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "number",
-                        "example": 2
-                      },
-                      "name": {
-                        "type": "string",
-                        "example": "ml_sbt"
-                      },
-                      "alias": {
-                        "type": "string",
-                        "example": "Monteiro Lobato x São Benedito"
-                      }
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number",
-                    "example": 2
-                  },
-                  "name": {
-                    "type": "string",
-                    "example": "ml_sbt"
-                  },
-                  "alias": {
-                    "type": "string",
-                    "example": "Monteiro Lobato x São Benedito"
-                  }
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           },
@@ -457,37 +411,8 @@
                       "type": "string",
                       "example": "Error"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "Error"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "example": "Error"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           }
