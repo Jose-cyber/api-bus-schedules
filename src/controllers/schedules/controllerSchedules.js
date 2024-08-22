@@ -17,13 +17,13 @@ class ControllerSchedules{
               res.status(200).json({"schedules": queryResult})
           })
           .catch((error) => {
-              res.status(400).json({ Status: 'Error!'})
+              res.status(500).json({ status: 'Failed'})
               logger.error(error.message)
           })
 
       } catch(error) {
           logger.error(error.message)
-          res.status(400).json({ "error": "Missing or wrong Parameter" });
+          res.status(400).json({ Missing: 'Parameters'});
       }        
   }
   create(req, res){
@@ -38,16 +38,17 @@ class ControllerSchedules{
           saturday: req.body.saturday,
           sunday: req.body.sunday, 
           come_from_sfx: req.body.come_from_sfx,
+          to_sfx: req.body.to_sfx,
           itineraries_name: req.body.itineraries_name,
           itineraries_alias: req.body.itineraries_alias
         }])
         .into('schedules')
         .timeout()
         .then(() =>{
-          res.status(201).json({"New Route Created":"Sucess!"})
+          res.status(201).json({status:"Sucess"})
         })
         .catch((error) =>{
-          res.status(500).json({"Create route": "failed!"})
+          res.status(500).json({ status: 'Failed'})
           logger.error(error.message)
         })
       

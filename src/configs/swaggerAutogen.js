@@ -39,10 +39,6 @@ const doc = {
       name: 'Health',
       description: 'Endpoints',
     },
-    {
-      name: 'Index',
-      description: 'Endpoints',
-    }
   ],
   components: {
     securitySchemes: {
@@ -67,21 +63,24 @@ const doc = {
         alias: "São José dos Campos X São Paulo"
     },
     itinerariesEdit:{
-        id: 8,
-        alias: "sjc_sp",
-        name: "São José dos Campos X São Paulo",
-        update: {
-          name: "sjc_mgc",
-          alias: "São José dos Campos X mogi das cruzes" 
-        }
+      id: 66,
+      name: "sjc_sp",
+      alias: "São José dos Campos X São Paulo",
+      update: {
+        name: "sjc_sp",
+        alias: "São José dos Campos X São Paulo(capital)" 
+      }
     },
     schedulesCreate:{
-        itinerario: "sjc_spj",
-        saida: "00:00",
-        chegada: "00:30",
-        semanal: true,
-        sabado: false,
-        domingo: false
+      start: "05:30:00",
+      end: "06:30:00",
+      weekly: true,
+      saturday: false,
+      sunday: false,
+      come_from_sfx: false,
+      to_sfx: false,
+      itineraries_name: "ml_sjc",
+      itineraries_alias: "Monteiro Lobato x São José dos Campos"
     },
     schedulesDelete:{
       id: 45,

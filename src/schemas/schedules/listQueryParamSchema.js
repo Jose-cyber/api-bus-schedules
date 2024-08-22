@@ -7,6 +7,7 @@ const listQueryParamSchema = yup
         saturday: yup.boolean(),
         sunday: yup.boolean(),
         come_from_sfx: yup.boolean(),
+        to_sfx: yup.boolean(),
 });
 
 module.exports = listQueryParamSchema;

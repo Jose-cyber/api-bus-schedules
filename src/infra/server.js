@@ -1,10 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const expressLogger = require('../middlewares/loggerExpress.js')
+
 const app = express();
 
 // Routes
-const indexRoutes = require('../routes/index/indexRoutes.js');
 const itinerariesRoutes = require('../routes/itineraries/itinerariesRoutes.js');
 const schedulerRoutes = require('../routes/schedules/schedulesRoutes.js');
 const waysRoutes = require('../routes/ways/waysRoutes.js')
@@ -15,6 +14,7 @@ const mapsRoutes = require('../routes/maps/mapRoutes.js');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('../docs/swagger.json');
 const bodyParser = require('body-parser');
+const expressLogger = require('../middlewares/loggerExpress.js')
 const corsOptions = require('../middlewares/corsConfig.js');
 const prometheusMiddleware = require('../middlewares/prometheusMetrics.js');
 const authRoutes = require('../routes/auth/authRoutes.js');
@@ -29,7 +29,6 @@ app.use(bodyParser.json());
 app.use(authRoutes)
 
 // calling my routes
-app.use(indexRoutes);
 app.use(healthRoutes);
 app.use(itinerariesRoutes);
 app.use(schedulerRoutes);

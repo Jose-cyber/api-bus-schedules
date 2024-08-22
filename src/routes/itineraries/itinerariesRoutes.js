@@ -53,7 +53,7 @@ itinerariesRoutes
                   "properties": {
                       status: {
                       type: 'string',
-                      example: 'Error'
+                      example: 'Failed'
                     }
                 }
               }  
@@ -80,14 +80,57 @@ itinerariesRoutes
       
       /* #swagger.responses[201] = { 
           description: "Register data, and sent email",
-          schema: { "status": "Success!" }
+          content: {
+            "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { 
+                        type: "object",
+                        example: "Success!" 
+                      }
+                    }
+                  }
+             }
+          }
       }*/
 
       
       /* #swagger.responses[400] = { 
           description: "Bad request, schema or parameters is invalid",
-          schema: { Missing: 'Parameters'}
+          content: {
+            "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "Missing": { 
+                        type: "object",
+                        example: "Parameters" 
+                      }
+                    }
+                  }
+            }
+          }
       }*/
+      
+      /* #swagger.responses[401] = { 
+          description: "Invalid token acess",
+          content: {
+            "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": { 
+                        type: "object",
+                        example: "Invalid token"
+                      }
+                    }
+                  }
+            }
+          }
+      }*/
+
+
 
       /* #swagger.responses[500] = {
            description: "Register data, and sent email",
@@ -98,7 +141,7 @@ itinerariesRoutes
                   "properties": {
                       status: {
                       type: 'string',
-                      example: 'Error'
+                      example: 'Failed'
                     }
                 }
               }  
@@ -128,14 +171,38 @@ itinerariesRoutes
           schema: { "status": "Success!","message": "Register {'id': 7'name': sjc_sp'alias': São José dos Campos X São Paulo} deleted successfully."}
       }*/
 
-      /* #swagger.responses[500] = { 
-          description: "Failed to connect to database!",
-          schema: { status: 'Failed'}
-      }*/
-
       /* #swagger.responses[400] = { 
           description: "Bad request, schema or parameters is invalid",
-          schema: { Missing: 'Parameters'}
+          content: {
+            "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "Missing": { 
+                        type: "object",
+                        example: "Parameters" 
+                      }
+                    }
+                  }
+            }
+          }
+      }*/
+
+      /* #swagger.responses[401] = { 
+          description: "Invalid token acess",
+          content: {
+            "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": { 
+                        type: "object",
+                        example: "Invalid token"
+                      }
+                    }
+                  }
+            }
+          }
       }*/
 
       /* #swagger.responses[500] = {
@@ -147,7 +214,7 @@ itinerariesRoutes
                   "properties": {
                       status: {
                       type: 'string',
-                      example: 'Error'
+                      example: 'Failed'
                     }
                 }
               }  
@@ -180,10 +247,40 @@ itinerariesRoutes
 
 
       /* #swagger.responses[400] = { 
-          description: "Request or schema is not valid",
-          schema: {"Missing": "Parameters"}
-      }*/ 
+          description: "Bad request, schema or parameters is invalid",
+          content: {
+            "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "Missing": { 
+                        type: "object",
+                        example: "Parameters" 
+                      }
+                    }
+                  }
+            }
+          }
+      }*/
       
+      /* #swagger.responses[401] = { 
+          description: "Invalid token acess",
+          content: {
+            "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": { 
+                        type: "object",
+                        example: "Invalid token"
+                      }
+                    }
+                  }
+            }
+          }
+      }*/
+
+
       /* #swagger.responses[500] = {
            description: "Register data, and sent email",
             content: {
@@ -193,7 +290,7 @@ itinerariesRoutes
                   "properties": {
                       status: {
                       type: 'string',
-                      example: 'Error'
+                      example: 'Failed'
                     }
                 }
               }  

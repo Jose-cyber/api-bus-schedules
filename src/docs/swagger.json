@@ -37,10 +37,6 @@
     {
       "name": "Health",
       "description": "Endpoints"
-    },
-    {
-      "name": "Index",
-      "description": "Endpoints"
     }
   ],
   "paths": {
@@ -203,62 +199,6 @@
         ]
       }
     },
-    "/": {
-      "get": {
-        "tags": [
-          "Index"
-        ],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Index page",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "service": {
-                      "type": "string",
-                      "example": "api-bus-schedules"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "service": {
-                      "type": "string",
-                      "example": "api-bus-schedules"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "service": {
-                  "type": "string",
-                  "example": "api-bus-schedules"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
-          }
-        }
-      }
-    },
     "/health": {
       "get": {
         "tags": [
@@ -409,7 +349,7 @@
                   "properties": {
                     "status": {
                       "type": "string",
-                      "example": "Error"
+                      "example": "Failed"
                     }
                   }
                 }
@@ -452,40 +392,11 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "type": "string",
+                      "type": "object",
                       "example": "Success!"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "Success!"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "example": "Success!"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           },
@@ -497,48 +408,32 @@
                   "type": "object",
                   "properties": {
                     "Missing": {
-                      "type": "string",
+                      "type": "object",
                       "example": "Parameters"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Missing": {
-                      "type": "string",
-                      "example": "Parameters"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Missing": {
-                  "type": "string",
-                  "example": "Parameters"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Invalid token acess",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "example": "Invalid token"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Failed to connect to database",
+            "description": "Register data, and sent email",
             "content": {
               "application/json": {
                 "schema": {
@@ -548,37 +443,8 @@
                       "type": "string",
                       "example": "Failed"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "Failed"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "example": "Failed"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           }
@@ -680,48 +546,32 @@
                   "type": "object",
                   "properties": {
                     "Missing": {
-                      "type": "string",
+                      "type": "object",
                       "example": "Parameters"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Missing": {
-                      "type": "string",
-                      "example": "Parameters"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Missing": {
-                  "type": "string",
-                  "example": "Parameters"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Invalid token acess",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "example": "Invalid token"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Failed to connect to database!",
+            "description": "Register data, and sent email",
             "content": {
               "application/json": {
                 "schema": {
@@ -731,37 +581,8 @@
                       "type": "string",
                       "example": "Failed"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "Failed"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "example": "Failed"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           }
@@ -982,59 +803,18 @@
             "description": "Unauthorized"
           },
           "500": {
-            "description": "Failed to connect to database!",
+            "description": "Register data, and sent email",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "Operation": {
+                    "status": {
                       "type": "string",
-                      "example": "Failed!"
-                    },
-                    "Action": {
-                      "type": "string",
-                      "example": "Update"
+                      "example": "Failed"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Operation": {
-                      "type": "string",
-                      "example": "Failed!"
-                    },
-                    "Action": {
-                      "type": "string",
-                      "example": "Update"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Operation": {
-                  "type": "string",
-                  "example": "Failed!"
-                },
-                "Action": {
-                  "type": "string",
-                  "example": "Update"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           }
@@ -1941,6 +1721,44 @@
             "description": "OK"
           }
         }
+      }
+    },
+    "/api-bus-schedules/api/v1/maps/create": {
+      "post": {
+        "tags": [
+          "Maps"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api-bus-schedules/api/v1/maps/update": {
+      "patch": {
+        "tags": [
+          "Maps"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api-bus-schedules/api/v1/maps/delete": {
+      "delete": {
+        "tags": [
+          "Maps"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
       }
     }
   },

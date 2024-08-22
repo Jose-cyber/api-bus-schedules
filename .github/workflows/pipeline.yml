@@ -1,0 +1,47 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build_and_push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: josecyber/api-bus-schedules:${{ github.sha }}
+  
+  deploy:
+    name: Deploy to Server(EC2 Instance)
+    runs-on: ubuntu-latest
+    needs: build_and_push_to_registry
+    steps:
+      - name: Install SSH Client
+        run: sudo apt-get install -y ssh
+
+      - name: Connect via SSH and Update Docker Image
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            cd /home/ubuntu/server/api-bus-schedules/
+            sed -i 's/image: josecyber\/api-bus-schedules:.*/image: josecyber\/api-bus-schedules:${{ github.sha }}/' api-bus-schedules.yaml
+            docker compose -f api-bus-schedules.yaml up -d
