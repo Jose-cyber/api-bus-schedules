@@ -13,6 +13,7 @@ class ControllerSchedules{
             .select()
             .where(reqParamValidator)
             .from('schedules')
+            .orderBy('start', 'asc')
             .then((queryResult) => {
               res.status(200).json({"schedules": queryResult})
           })
