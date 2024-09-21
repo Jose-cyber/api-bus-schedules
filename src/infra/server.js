@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-
 const app = express();
 
 // Routes
@@ -9,10 +8,9 @@ const schedulerRoutes = require('../routes/schedules/schedulesRoutes.js');
 const waysRoutes = require('../routes/ways/waysRoutes.js')
 const healthRoutes = require('../routes/health/HealthRoutes.js');
 const mapsRoutes = require('../routes/maps/mapRoutes.js');
+const swaggerRoutes = require('../routes/swagger/swaggerRoutes.js')
 
 // configs
-const swaggerUi = require('swagger-ui-express');
-const swaggerFile = require('../docs/swagger.json');
 const bodyParser = require('body-parser');
 const expressLogger = require('../middlewares/loggerExpress.js')
 const corsOptions = require('../middlewares/corsConfig.js');
@@ -36,7 +34,7 @@ app.use(waysRoutes)
 app.use(mapsRoutes)
 
 //metrics and docs
-app.use('/api-bus-schedules/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use(swaggerRoutes);
 app.use(prometheusMiddleware)
 
 module.exports = app;

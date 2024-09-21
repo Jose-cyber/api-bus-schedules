@@ -15,7 +15,8 @@ class Maps{
         })
        }
        catch(error){
-
+        res.status(400).json({status: 'failed'})
+        logger.error(error.message)
        }
       
     }

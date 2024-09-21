@@ -69,11 +69,12 @@ class ControllerSchedules{
               start: req.body.start,
               end: req.body.end,
               weekly: req.body.weekly,
-              come_from_sfx: req.body.come_from_sfx,
               saturday: req.body.saturday,
-              sunday: req.body.sunday,
+              sunday: req.body.sunday, 
+              come_from_sfx: req.body.come_from_sfx,
+              to_sfx: req.body.to_sfx,
               itineraries_name: req.body.itineraries_name,
-              itineraries_alias: req.body.itineraries_alias,
+              itineraries_alias: req.body.itineraries_alias
             })
             .then(() => {
               res.status(200).json({ Status: 'Register '+ req.body.id +' updated sucefully'})
