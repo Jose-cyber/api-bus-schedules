@@ -20,13 +20,13 @@ exports.up = function(knex) {
         })
 
         .createTable('ways', function(table){
-            table.string('route_alias', 255).notNull().references('alias').inTable('itineraries').index();;
-            table.string('route_name', 100).notNull().references('name').inTable('itineraries').index();;
+            table.string('route_alias', 255).notNull().references('alias').inTable('itineraries').index().unique();
+            table.string('route_name', 100).notNull().references('name').inTable('itineraries').index().unique();
             table.jsonb('bus_stops')
          })
         
         .createTable('maps', function(table){
-            table.string('maps_name', 100).notNull().references('name').inTable('itineraries').index();;
+            table.string('maps_name', 100).notNull().references('name').inTable('itineraries').index().unique();;
             table.text('link')
          });
 };

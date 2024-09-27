@@ -755,52 +755,36 @@
             }
           },
           "400": {
-            "description": "Request or schema is not valid",
+            "description": "Bad request, schema or parameters is invalid",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "Missing": {
-                      "type": "string",
+                      "type": "object",
                       "example": "Parameters"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Missing": {
-                      "type": "string",
-                      "example": "Parameters"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Missing": {
-                  "type": "string",
-                  "example": "Parameters"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Invalid token acess",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "example": "Invalid token"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "description": "Register data, and sent email",
@@ -834,7 +818,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "itinerario",
+            "name": "itineraries_name",
             "in": "query",
             "description": "Filter by itinerarie.",
             "required": false,
@@ -843,27 +827,45 @@
             }
           },
           {
-            "name": "semanal",
+            "name": "weekly",
             "in": "query",
-            "description": "Filter by semanal values.",
+            "description": "Filter by weekly schedules.",
             "required": false,
             "schema": {
               "type": "boolean"
             }
           },
           {
-            "name": "sabado",
+            "name": "saturday",
             "in": "query",
-            "description": "Filter by sabado values.",
+            "description": "Filter by saturday schedules.",
             "required": false,
             "schema": {
               "type": "boolean"
             }
           },
           {
-            "name": "domingo",
+            "name": "sunday",
             "in": "query",
-            "description": "Filter by domingo values.",
+            "description": "Filter by sunday schedules.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "come_from_sfx",
+            "in": "query",
+            "description": "Filter by come_from_sfx schedules.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "to_sfx",
+            "in": "query",
+            "description": "Filter by to_sfx schedules.",
             "required": false,
             "schema": {
               "type": "boolean"
@@ -1013,92 +1015,34 @@
             }
           },
           "400": {
-            "description": "Bad request, schema or missing parameter",
+            "description": "Bad request, schema or parameters is invalid",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Missing or wrong Parameter"
+                    "Missing": {
+                      "type": "object",
+                      "example": "Parameters"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Missing or wrong Parameter"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "example": "Missing or wrong Parameter"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           },
           "500": {
-            "description": "Failed to connect to database",
+            "description": "Register data, and sent email",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "Status": {
+                    "status": {
                       "type": "string",
-                      "example": "Error!"
+                      "example": "Failed"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Status": {
-                      "type": "string",
-                      "example": "Error!"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Status": {
-                  "type": "string",
-                  "example": "Error!"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           }
@@ -1137,86 +1081,28 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "New Route Created": {
+                    "status": {
                       "type": "string",
-                      "example": "Sucess!"
+                      "example": "Sucess"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "New Route Created": {
-                      "type": "string",
-                      "example": "Sucess!"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "New Route Created": {
-                  "type": "string",
-                  "example": "Sucess!"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           },
           "400": {
-            "description": "Bad request, schema or parameter is invalid",
+            "description": "Bad request, schema or parameters is invalid",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "Missing": {
-                      "type": "string",
-                      "example": "Parameters!"
+                      "type": "object",
+                      "example": "Parameters"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Missing": {
-                      "type": "string",
-                      "example": "Parameters!"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Missing": {
-                  "type": "string",
-                  "example": "Parameters!"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           },
@@ -1224,47 +1110,18 @@
             "description": "Unauthorized"
           },
           "500": {
-            "description": "Failed to connect to database",
+            "description": "Register data, and sent email",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "Create route": {
+                    "status": {
                       "type": "string",
-                      "example": "failed!"
+                      "example": "Failed"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Create route": {
-                      "type": "string",
-                      "example": "failed!"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Create route": {
-                  "type": "string",
-                  "example": "failed!"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           }
@@ -1347,47 +1204,18 @@
             }
           },
           "400": {
-            "description": "Bad request, schema or parameter is invalid",
+            "description": "Bad request, schema or parameters is invalid",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "Missing": {
-                      "type": "string",
-                      "example": "Parameters!"
+                      "type": "object",
+                      "example": "Parameters"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Missing": {
-                      "type": "string",
-                      "example": "Parameters!"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Missing": {
-                  "type": "string",
-                  "example": "Parameters!"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           },
@@ -1530,47 +1358,18 @@
             }
           },
           "400": {
-            "description": "Bad request, schema or parameter is invalid",
+            "description": "Bad request, schema or parameters is invalid",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "Missing": {
-                      "type": "string",
-                      "example": "Parameters!"
+                      "type": "object",
+                      "example": "Parameters"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "Missing": {
-                      "type": "string",
-                      "example": "Parameters!"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "Missing": {
-                  "type": "string",
-                  "example": "Parameters!"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           },
@@ -1578,7 +1377,7 @@
             "description": "Unauthorized"
           },
           "500": {
-            "description": "Failed to delete register to database",
+            "description": "Register data, and sent email",
             "content": {
               "application/json": {
                 "schema": {
@@ -1588,37 +1387,8 @@
                       "type": "string",
                       "example": "Failed"
                     }
-                  },
-                  "xml": {
-                    "name": "main"
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "Failed"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              }
-            },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "example": "Failed"
-                }
-              },
-              "xml": {
-                "name": "main"
               }
             }
           }
@@ -1637,7 +1407,11 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api-bus-schedules/api/v1/ways/list/filter": {
@@ -1647,12 +1421,17 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {},
-        "security": [
-          {
-            "bearerAuth": []
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
-        ]
+        }
       }
     },
     "/api-bus-schedules/api/v1/ways/create": {
@@ -1671,15 +1450,100 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "security": [
           {
             "bearerAuth": []
           }
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "route_alias": {
+                    "example": "any"
+                  },
+                  "route_name": {
+                    "example": "any"
+                  },
+                  "bus_stops": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-bus-schedules/api/v1/ways/update": {
+      "patch": {
+        "tags": [
+          "Ways"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "route_alias": {
+                    "example": "any"
+                  },
+                  "route_name": {
+                    "example": "any"
+                  },
+                  "bus_stops": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api-bus-schedules/api/v1/ways/delete": {
@@ -1698,15 +1562,44 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "security": [
           {
             "bearerAuth": []
           }
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "route_alias": {
+                    "example": "any"
+                  },
+                  "route_name": {
+                    "example": "any"
+                  },
+                  "bus_stops": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api-bus-schedules/api/v1/maps/list": {
@@ -1719,6 +1612,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
@@ -1729,10 +1625,49 @@
           "Maps"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "maps_name": {
+                    "example": "any"
+                  },
+                  "link": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1743,10 +1678,49 @@
           "Maps"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "maps_name": {
+                    "example": "any"
+                  },
+                  "link": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1757,8 +1731,51 @@
           "Maps"
         ],
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "maps_name": {
+                    "example": "any"
+                  },
+                  "link": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -1815,13 +1832,13 @@
         "properties": {
           "id": {
             "type": "number",
-            "example": 8
+            "example": 66
           },
-          "alias": {
+          "name": {
             "type": "string",
             "example": "sjc_sp"
           },
-          "name": {
+          "alias": {
             "type": "string",
             "example": "São José dos Campos X São Paulo"
           },
@@ -1830,11 +1847,11 @@
             "properties": {
               "name": {
                 "type": "string",
-                "example": "sjc_mgc"
+                "example": "sjc_sp"
               },
               "alias": {
                 "type": "string",
-                "example": "São José dos Campos X mogi das cruzes"
+                "example": "São José dos Campos X São Paulo(capital)"
               }
             }
           }
@@ -1846,29 +1863,41 @@
       "schedulesCreate": {
         "type": "object",
         "properties": {
-          "itinerario": {
+          "start": {
             "type": "string",
-            "example": "sjc_spj"
+            "example": "05:30:00"
           },
-          "saida": {
+          "end": {
             "type": "string",
-            "example": "00:00"
+            "example": "06:30:00"
           },
-          "chegada": {
-            "type": "string",
-            "example": "00:30"
-          },
-          "semanal": {
+          "weekly": {
             "type": "boolean",
             "example": true
           },
-          "sabado": {
+          "saturday": {
             "type": "boolean",
             "example": false
           },
-          "domingo": {
+          "sunday": {
             "type": "boolean",
             "example": false
+          },
+          "come_from_sfx": {
+            "type": "boolean",
+            "example": false
+          },
+          "to_sfx": {
+            "type": "boolean",
+            "example": false
+          },
+          "itineraries_name": {
+            "type": "string",
+            "example": "ml_sjc"
+          },
+          "itineraries_alias": {
+            "type": "string",
+            "example": "Monteiro Lobato x São José dos Campos"
           }
         },
         "xml": {

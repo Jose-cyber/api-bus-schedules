@@ -4,8 +4,13 @@ const environment = process.env.NODE_ENV || 'development';
 const knex = require('knex')(config[environment])
 require('dotenv').config()
 
+const run ={
+    migration: process.env.DB_MIGRATION || false,
+    seeds: process.env.DB_SEEDS || false
+}
+
 async function runMigrationsAndSeeds() {
-    if (process.env.DB_MIGRATION === 'true') {
+    if (run.migration === 'true') {
         try {
             // Run migrations
             await knex.migrate.up(config[environment]);
@@ -15,7 +20,7 @@ async function runMigrationsAndSeeds() {
         }
     }
 
-    if (process.env.DB_SEEDS === 'true'){
+    if (run.seeds === 'true'){
         try{
             // Run seeds
             await knex.seed.run(config[environment]);
